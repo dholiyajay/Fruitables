@@ -1,0 +1,75 @@
+{
+    "fruits": [
+      {
+        "id": 1,
+        "name": "Grapes",
+        "image": "img/fruit-item-1.jpg",
+        "description": "Fresh grapes",
+        "price": 4.99
+      },
+      {
+        "id": 2,
+        "name": "Watermelon",
+        "image": "img/fruit-item-2.jpg",
+        "description": "Fresh watermelon",
+        "price": 5.99
+      },
+      {
+        "id": 3,
+        "name": "Apple",
+        "image": "img/fruit-item-3.jpg",
+        "description": "Fresh apple",
+        "price": 2.99
+      },
+      {
+        "id": 4,
+        "name": "Banana",
+        "image": "img/fruit-item-4.jpg",
+        "description": "Fresh banana",
+        "price": 1.99
+      },
+      {
+        "id": 5,
+        "name": "Orange",
+        "image": "img/fruit-item-5.jpg",
+        "description": "Fresh orange",
+        "price": 3.49
+      },
+      {
+        "id": 6,
+        "name": "Pineapple",
+        "image": "img/fruit-item-6.jpg",
+        "description": "Fresh pineapple",
+        "price": 4.79
+      },
+      {
+        "id": 7,
+        "name": "Mango",
+        "image": "img/fruit-item-7.jpg",
+        "description": "Fresh mango",
+        "price": 6.99
+      },
+      {
+        "id": 8,
+        "name": "Peach",
+        "image": "img/fruit-item-8.jpg",
+        "description": "Fresh peach",
+        "price": 3.99
+      },
+      {
+        "id": 9,
+        "name": "Kiwi",
+        "image": "img/fruit-item-9.jpg",
+        "description": "Fresh kiwi",
+        "price": 2.49
+      },
+      {
+        "id": 10,
+        "name": "Strawberry",
+        "image": "img/fruit-item-10.jpg",
+        "description": "Fresh strawberry",
+        "price": 4.29
+      }
+    ]
+  }
+  
