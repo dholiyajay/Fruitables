@@ -69,7 +69,7 @@ const Shop = () => {
                                                     fruitName.map((fruit, index) => {
                                                         const fruitCount = fruits.filter(item => item.name === fruit).length;
                                                         return (
-                                                            <ul className="list-unstyled fruite-categorie" key={index}>
+                                                            <ul onClick={() => setFruits(fruits.filter(item => item.name === fruit))} className="list-unstyled fruite-categorie" key={index}>
                                                                 <li>
                                                                     <div className="d-flex justify-content-between fruite-name">
                                                                         <a href="#"><i className="fas fa-apple-alt me-2" />{fruit}</a>
