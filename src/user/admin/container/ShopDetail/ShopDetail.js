@@ -1,7 +1,20 @@
-import React from 'react'
+import React , { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 const ShopDetail = () => {
     const { id } = useParams();
+
+    const [fruitsDetails, setFruitsDetails] = useState([])
+    const fruitData = async () => {
+        const response = await fetch("http://localhost:8000/fruits")
+        const data = await response.json()
+
+        const fruitFind = data.find((fruit) => fruit.id == id)
+
+        setFruitsDetails(fruitFind)
+    }
+    useEffect(() => {
+        fruitData()
+    }, [])
 
     return (
         <>
@@ -43,14 +56,14 @@ const ShopDetail = () => {
                                     <div className="col-lg-6">
                                         <div className="border rounded">
                                             <a href="#">
-                                                <img src="img/single-item.jpg" className="img-fluid rounded" alt="Image" />
+                                                <img src={`../` + fruitsDetails?.image} className="img-fluid rounded" alt="Image" />
                                             </a>
                                         </div>
                                     </div>
                                     <div className="col-lg-6">
-                                        <h4 className="fw-bold mb-3">Brocoli</h4>
-                                        <p className="mb-3">Category: Vegetables</p>
-                                        <h5 className="fw-bold mb-3">3,35 $</h5>
+                                        <h4 className="fw-bold mb-3">{ fruitsDetails?.name }</h4>
+                                        <p className="mb-3">{ fruitsDetails?.description }</p>
+                                        <h5 className="fw-bold mb-3">$: {fruitsDetails?.price}</h5>
                                         <div className="d-flex mb-4">
                                             <i className="fa fa-star text-secondary" />
                                             <i className="fa fa-star text-secondary" />
