@@ -5,70 +5,80 @@
         "name": "Orange",
         "image": "img/fruite-item-1.jpg",
         "description": "Fresh grapes",
-        "price": 4.99
+        "price": 4.99,
+        "type": "Organic"
       },
       {
         "id": 2,
         "name": "Watermelon",
         "image": "img/fruite-item-2.jpg",
         "description": "Fresh watermelon",
-        "price": 5.99
+        "price": 5.99,
+        "type": "Fresh"
       },
       {
         "id": 3,
-        "name": "Apple",
+        "name": "Banana",
         "image": "img/fruite-item-3.jpg",
         "description": "Fresh apple",
-        "price": 2.99
+        "price": 2.99,
+        "type": "Organic"
       },
       {
         "id": 4,
-        "name": "Banana",
-        "image": "img/fruite-item-4.jpg",
+        "name": "Orange",
+        "image": "img/fruite-item-1.jpg",
         "description": "Fresh banana",
-        "price": 1.99
+        "price": 1.99,
+        "type": "Fresh"
       },
       {
         "id": 5,
-        "name": "Orange",
+        "name": "Grape",
         "image": "img/fruite-item-5.jpg",
         "description": "Fresh orange",
-        "price": 3.49
+        "price": 3.49,
+        "type": "Organic"
       },
       {
         "id": 6,
-        "name": "Pineapple",
+        "name": "Apple",
         "image": "img/fruite-item-6.jpg",
         "description": "Fresh pineapple",
-        "price": 4.79
+        "price": 4.79,
+        "type": "Fresh"
       },
       {
         "id": 7,
-        "name": "Mango",
+        "name": "Grape",
         "image": "img/fruite-item-5.jpg",
         "description": "Fresh mango",
-        "price": 6.99
+        "price": 6.99,
+        "type": "Organic"
       },
       {
         "id": 8,
-        "name": "Peach",
+        "name": "Apple",
         "image": "img/fruite-item-6.jpg",
         "description": "Fresh peach",
-        "price": 3.99
+        "price": 3.99,
+        "type": "Fresh"
       },
       {
         "id": 9,
-        "name": "Banana",
-        "image": "img/fruite-item-4.jpg",
+        "name": "Orange",
+        "image": "img/fruite-item-1.jpg",
         "description": "Fresh kiwi",
-        "price": 2.49
+        "price": 2.49,
+        "type": "Organic"
       },
       {
         "id": 10,
         "name": "Banana",
         "image": "img/fruite-item-3.jpg",
         "description": "Fresh strawberry",
-        "price": 4.29
+        "price": 4.29,
+        "type": "Fresh"
       }
     ]
   }
