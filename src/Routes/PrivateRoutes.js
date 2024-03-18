@@ -1,10 +1,12 @@
 import React from 'react'
+import { Navigate, Outlet } from 'react-router-dom'
 
 const PrivateRoutes = () => {
+  const isAuthenticated = false
   return (
-    <div>
-      <h1>PrivateRoutes</h1>
-    </div>
+    <>
+      {isAuthenticated ? <Outlet/> : <Navigate to="/"/>}
+    </>
   )
 }
 
