@@ -47,8 +47,7 @@ const Shop = () => {
         } 
 
         if (range !== '') {
-            filteredData = filteredData.filter(item => item.price <= range);
-            console.log('range',range);
+            filteredData = filteredData.filter(item => Math.round(item.price) <= range);
         }
 
         return filteredData;
@@ -131,8 +130,8 @@ const Shop = () => {
                                             <div className="mb-3">
                                                 <h4 className="mb-2">Price</h4>
                                                 {/* onChange={(e) => setFruits(fruits.filter(fruit => fruit.price <= e.target.value))} */}
-                                                <input type="range" onChange={(e) => setRange(e.target.value)} className="form-range w-100" id="rangeInput" name="rangeInput" min={1} max={10} />
-                                                <output id="amount" name="amount" min-velue={1} max-value={10} htmlFor="rangeInput">0</output>
+                                                <input type="range" onChange={(e) => setFruits(fruits.filter(fruit => fruit.price <= e.target.value))} className="form-range w-100" id="rangeInput" name="rangeInput" />
+                                                <output id="amount" name="amount" min-velue={1} max-value={10} htmlFor="rangeInput">{range}</output>
                                             </div>
                                         </div>
                                         <div className="col-lg-12">
