@@ -1,15 +1,20 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Products from '../user/admin/container/Products/Products'
 import PrivateRoutes from './PrivateRoutes'
+import Layout from '../user/admin/admin/components/Layout'
+import Fruits from '../user/admin/admin/components/Fruits/Fruits'
+import Vegetables from '../user/admin/admin/components/Vegetables/Vegetables'
 
 const AdminRoutes = () => {
     return (
-        <Routes>
-            <Route exact path="/*" element={<PrivateRoutes />}>
-                <Route path="products/*" element={<Products />} />
-            </Route>
-        </Routes>
+        <>
+            <Layout>
+                <Routes>
+                    <Route path="/fruits" element={<Fruits />} />
+                    <Route path="/vegetables" element={<Vegetables />} />
+                </Routes>
+            </Layout>
+        </>
     )
 }
 
