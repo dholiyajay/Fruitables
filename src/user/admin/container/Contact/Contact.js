@@ -1,6 +1,31 @@
 import React from 'react'
+import { object, string, number, date, InferType } from 'yup';
+import { useFormik } from 'formik';
+
+
+
+let contactSchema = object({
+    name: string().required(),
+    email: string().required().email(),
+    message: string().required().min(5,'Too Short!').max(1000,'Too Long!'),
+});
 
 const Contact = () => {
+
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            email: '',
+            message: '',
+        },
+        validationSchema: contactSchema,
+        onSubmit: values => {
+            alert(JSON.stringify(values, null, 2));
+        },
+    });
+
+    const { handleSubmit, handleChange, handleBlur, values, touched, errors } = formik
+
     return (
         <>
             <div>
@@ -49,10 +74,13 @@ const Contact = () => {
                                     </div>
                                 </div>
                                 <div className="col-lg-7">
-                                    <form action className>
-                                        <input type="text" className="w-100 form-control border-0 py-3 mb-4" placeholder="Your Name" />
-                                        <input type="email" className="w-100 form-control border-0 py-3 mb-4" placeholder="Enter Your Email" />
-                                        <textarea className="w-100 form-control border-0 mb-4" rows={5} cols={10} placeholder="Your Message" defaultValue={""} />
+                                    <form onSubmit={handleSubmit}>
+                                        <input name="name" onBlur={handleBlur} onChange={handleChange} value={values.name} type="text" className="w-100 form-control border-0 py-3 mb-4" placeholder="Your Name" />
+                                        <span className="text-danger" >{errors.name && touched.name ? errors.name : ''}</span>
+                                        <input name="email" onBlur={handleBlur} onChange={handleChange} value={values.email} type="email" className="w-100 form-control border-0 py-3 mb-4" placeholder="Enter Your Email" />
+                                        <span className="text-danger">{errors.email && touched.email ? errors.email : ''}</span>
+                                        <textarea name="message" onBlur={handleBlur} onChange={handleChange} value={values.message} className="w-100 form-control border-0 mb-4" rows={5} cols={10} placeholder="Your Message" defaultValue={""} />
+                                        <span className="text-danger">{errors.message && touched.message ? errors.message : ''}</span>
                                         <button className="w-100 btn form-control border-secondary py-3 bg-white text-primary " type="submit">Submit</button>
                                     </form>
                                 </div>

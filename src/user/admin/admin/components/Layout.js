@@ -11,7 +11,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import MailIcon from '@mui/icons-material/Mail';
 import RestaurantOutlinedIcon from '@mui/icons-material/RestaurantOutlined';
 import SoupKitchenOutlinedIcon from '@mui/icons-material/SoupKitchenOutlined';
@@ -22,6 +22,7 @@ const drawerWidth = 240;
 const adminDrawerData = [
     {name: 'Fruits', icon:<RestaurantOutlinedIcon />, link: '/admin/fruits'},
     {name: 'Vegetables', icon:<SoupKitchenOutlinedIcon />, link: '/admin/vegetables'},
+    {name: 'Category', icon:<FormatListNumberedIcon />, link: '/admin/category'},
 ]
 
 export default function Layout({ children }) {
