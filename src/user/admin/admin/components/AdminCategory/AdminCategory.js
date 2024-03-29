@@ -108,7 +108,7 @@ const AdminCategory = () => {
     {
       field: 'edit',
       headerName: 'Edit',
-      width: 100,
+     width: 100,
       renderCell: (params) => (
         <Button
           variant="contained" color="success"

@@ -1,0 +1,1 @@
+export const FACILITIES_DATA = "FACILITIES_DATA";
