@@ -9,8 +9,11 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { object, string, number, date, InferType } from 'yup';
 import { DataGrid } from '@mui/x-data-grid';
 import { useDispatch } from 'react-redux';
-import { addfacilities } from '../../../../../redux/Action/facilities.action';
+import { addfacilities, deleteData, editData } from '../../../../../redux/Action/facilities.action';
 import { useSelector } from 'react-redux';
+import DeleteIcon from '@mui/icons-material/Delete';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+
 
 const Facilties = () => {
     const [open, setOpen] = React.useState(false);
@@ -38,25 +41,57 @@ const Facilties = () => {
         },
         validationSchema: facilitySchema,
         onSubmit: values => {
-            dispatch(addfacilities(values))
+            const rNo = Math.floor(Math.random() * 1000);
+            dispatch(addfacilities({ ...values, id: rNo }))
+            handleClose();
+            formik.resetForm();
         },
     });
 
     const { handleSubmit, handleChange, handleBlur, values, touched, errors } = formik
 
+    const handleRemove = (id) => {
+        dispatch(deleteData(id))
+    }
+
+    const handleEdit = (data) => {
+        formik.setValues(data)
+        setOpen(true)
+        dispatch(editData(data))
+    }
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'firstName', headerName: 'First name', width: 130 },
-        { field: 'lastName', headerName: 'Last name', width: 130 }
+        { field: 'name', headerName: 'Name', width: 130 },
+        { field: 'description', headerName: 'Description', width: 130 },
+        {
+            field: 'remove',
+            headerName: 'Remove',
+            width: 130,
+            renderCell: (params) => (
+                <Button
+                    variant="outlined" color="error"
+                    onClick={() => handleRemove(params.row.id)}
+                >
+                    Remove
+                    <DeleteIcon />
+                </Button>
+            ),
+        },
+        {
+            field: 'edit',
+            headerName: 'Edit',
+            width: 100,
+            renderCell: (params) => (
+                <Button
+                    variant="contained" color="success"
+                    onClick={() => handleEdit(params.row)}
+                >
+                    Edit
+                    <BorderColorIcon />
+                </Button>
+            ),
+        }
     ];
-
-    const rows = [
-        { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-        { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-        { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 }
-    ];
-
 
     return (
         <>
@@ -117,7 +152,7 @@ const Facilties = () => {
 
             <div style={{ height: 400, width: '100%' }}>
                 <DataGrid
-                    rows={rows}
+                    rows={useFacilities.facility}
                     columns={columns}
                     initialState={{
                         pagination: {
