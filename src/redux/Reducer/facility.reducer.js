@@ -1,4 +1,4 @@
-import { DELETE_DATA, EDIT_DATA, FACILITIES_DATA } from "../ActionType";
+import { DELETE_DATA, EDIT_DATA, FACILITIES_DATA, LOADING_DATA, START_LOADING, STOP_LOADING } from "../ActionType";
 
 const initialState = {
     facility: [],
@@ -21,16 +21,29 @@ export const facilityReducer = (state = initialState, action) => {
                 facility: state.facility.filter((item) => item.id !== action.payload)
             }
         case EDIT_DATA:
-            const editFacility = state.facility.map((facility) => {
-                if (facility.id === action.payload.id) {
-                    return action.payload;
-                } else {
-                    return facility;
-                }
-            });
             return {
                 ...state,
-                facility: editFacility
+                facility: state.facility.map((v) => {
+                    if (v.id === action.payload.id) {
+                        return action.payload
+                    }
+                })
+            };
+        // case LOADING_DATA:
+        //     return {
+        //         ...state,
+        //         isLoading: action.payload
+        //     }
+
+        case START_LOADING:
+            return {
+                ...state,
+                isLoading: true,
+            };
+        case STOP_LOADING:
+            return {
+                ...state,
+                isLoading: false,
             };
         default:
             return state
