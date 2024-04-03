@@ -13,14 +13,14 @@ import {
     addfacilities,
     deleteData,
     editData,
-    handleLoading,
-    startLoading,
-    stopLoading,
 } from "../../../../../redux/Action/facilities.action";
 import { useSelector } from "react-redux";
 import DeleteIcon from "@mui/icons-material/Delete";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
+import Skeleton from '@mui/material/Skeleton';
 
 const Facilties = () => {
     const [open, setOpen] = React.useState(false);
@@ -30,14 +30,14 @@ const Facilties = () => {
     const dispatch = useDispatch();
     const useFacilities = useSelector((state) => state.fruitFacilities);
 
-    const isLoading = useSelector((state) => state.fruitFacilities.isLoading);
+    // const isLoading = useSelector((state) => state.fruitFacilities.isLoading);
 
-    useEffect(() => {
-        dispatch(startLoading())
-        setTimeout(() => {
-            dispatch(stopLoading())
-        })
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(startLoading())
+    //     setTimeout(() => {
+    //         dispatch(stopLoading())
+    //     })
+    // }, [dispatch]);
 
     // const isLoading = useSelector((state) => state.fruitFacilities.isLoading);
     console.log(useFacilities);
@@ -132,84 +132,93 @@ const Facilties = () => {
 
     return (
         <>
-            <h1>Facilties Panel</h1>
+            {
+                useFacilities.isLoading ? <>
+                    <br /><br />
+                    <LinearProgress />
+                    <br />
+                    <br />
+                    <Box sx={{ width: 300 }}>
+                        <Skeleton />
+                        <Skeleton animation="wave" />
+                        <Skeleton animation="wave" />
+                        <Skeleton animation="wave" />
+                        <Skeleton animation={false} />
+                    </Box>
 
-            <br />
+                </> : <>
+                    <Button variant="outlined" onClick={handleClickOpen}>
+                        Open form dialog
+                    </Button>
+                    <Dialog open={open} onClose={handleClose}>
+                        <DialogTitle>Facilties</DialogTitle>
+                        <form onSubmit={handleSubmit}>
+                            <DialogContent>
+                                <TextField
+                                    margin="dense"
+                                    id="name"
+                                    name="name"
+                                    label="Facility Name"
+                                    type="text"
+                                    fullWidth
+                                    variant="standard"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.name}
+                                    error={errors.name && touched.name ? true : false}
+                                    helperText={errors.name && touched.name ? errors.name : ""}
+                                />
+                                <TextField
+                                    margin="dense"
+                                    id="description"
+                                    name="description"
+                                    label="Facility Description"
+                                    type="text"
+                                    fullWidth
+                                    variant="standard"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.description}
+                                    error={errors.description && touched.description ? true : false}
+                                    helperText={
+                                        errors.description && touched.description
+                                            ? errors.description
+                                            : ""
+                                    }
+                                />
+                                <DialogActions>
+                                    <Button onClick={handleClose}>Cancel</Button>
+                                    <Button type="submit">{update ? "Update" : "Add"}</Button>
+                                </DialogActions>
+                            </DialogContent>
+                        </form>
+                    </Dialog>
 
-            <Button variant="outlined" onClick={handleClickOpen}>
-                Open form dialog
-            </Button>
-            <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Facilties</DialogTitle>
-                <form onSubmit={handleSubmit}>
-                    <DialogContent>
-                        <TextField
-                            margin="dense"
-                            id="name"
-                            name="name"
-                            label="Facility Name"
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.name}
-                            error={errors.name && touched.name ? true : false}
-                            helperText={errors.name && touched.name ? errors.name : ""}
+                    <br />
+                    <br />
+
+
+
+                    <div style={{ height: 400, width: "100%" }}>
+
+                        <DataGrid
+                            rows={useFacilities.facility}
+                            columns={columns}
+                            initialState={{
+                                pagination: {
+                                    paginationModel: { page: 0, pageSize: 5 },
+                                },
+                            }}
+                            pageSizeOptions={[5, 10]}
+                            checkboxSelection
                         />
-                        <TextField
-                            margin="dense"
-                            id="description"
-                            name="description"
-                            label="Facility Description"
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.description}
-                            error={errors.description && touched.description ? true : false}
-                            helperText={
-                                errors.description && touched.description
-                                    ? errors.description
-                                    : ""
-                            }
-                        />
-                        <DialogActions>
-                            <Button onClick={handleClose}>Cancel</Button>
-                            <Button type="submit">{update ? "Update" : "Add"}</Button>
-                        </DialogActions>
-                    </DialogContent>
-                </form>
-            </Dialog>
 
-            <br />
-            <br />
-
-
-
-
-            <div>
-                {isLoading ? (
-                    <CircularProgress />
-                ) : (
-                    <div>
-                        <div style={{ height: 400, width: "100%" }}>
-                            <DataGrid
-                                rows={useFacilities.facility}
-                                columns={columns}
-                                initialState={{
-                                    pagination: {
-                                        paginationModel: { page: 0, pageSize: 5 },
-                                    },
-                                }}
-                                pageSizeOptions={[5, 10]}
-                                checkboxSelection
-                            />
-                        </div>
                     </div>
-                )}
-            </div>
+
+                </>
+
+
+            }
 
         </>
     );

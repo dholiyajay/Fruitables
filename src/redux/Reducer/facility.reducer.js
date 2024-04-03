@@ -1,4 +1,4 @@
-import { DELETE_DATA, EDIT_DATA, FACILITIES_DATA, LOADING_DATA, START_LOADING, STOP_LOADING } from "../ActionType";
+import { DELETE_DATA, EDIT_DATA, FACILITIES_DATA, LOADING_FACILITY } from "../ActionType";
 
 const initialState = {
     facility: [],
@@ -10,15 +10,22 @@ export const facilityReducer = (state = initialState, action) => {
     console.log(action);
 
     switch (action.type) {
+        case LOADING_FACILITY: 
+            return {
+                ...state,
+                isLoading: true
+            }
         case FACILITIES_DATA:
             return {
                 ...state,
-                facility: state.facility.concat(action.payload)
+                facility: state.facility.concat(action.payload),
+                isLoading: false
             }
         case DELETE_DATA:
             return {
                 ...state,
-                facility: state.facility.filter((item) => item.id !== action.payload)
+                facility: state.facility.filter((item) => item.id !== action.payload),
+                isLoading: false
             }
         case EDIT_DATA:
             return {
@@ -27,7 +34,8 @@ export const facilityReducer = (state = initialState, action) => {
                     if (v.id === action.payload.id) {
                         return action.payload
                     }
-                })
+                }),
+                isLoading: false
             };
         // case LOADING_DATA:
         //     return {
@@ -35,16 +43,16 @@ export const facilityReducer = (state = initialState, action) => {
         //         isLoading: action.payload
         //     }
 
-        case START_LOADING:
-            return {
-                ...state,
-                isLoading: true,
-            };
-        case STOP_LOADING:
-            return {
-                ...state,
-                isLoading: false,
-            };
+        // case START_LOADING:
+        //     return {
+        //         ...state,
+        //         isLoading: true,
+        //     };
+        // case STOP_LOADING:
+        //     return {
+        //         ...state,
+        //         isLoading: false,
+        //     };
         default:
             return state
     }
