@@ -1,85 +1,106 @@
 {
-    "fruits": [
-      {
-        "id": 1,
-        "name": "Orange",
-        "image": "img/fruite-item-1.jpg",
-        "description": "Fresh grapes",
-        "price": 4.99,
-        "type": "Organic"
-      },
-      {
-        "id": 2,
-        "name": "Watermelon",
-        "image": "img/fruite-item-2.jpg",
-        "description": "Fresh watermelon",
-        "price": 5.99,
-        "type": "Fresh"
-      },
-      {
-        "id": 3,
-        "name": "Banana",
-        "image": "img/fruite-item-3.jpg",
-        "description": "Fresh apple",
-        "price": 2.99,
-        "type": "Organic"
-      },
-      {
-        "id": 4,
-        "name": "Orange",
-        "image": "img/fruite-item-1.jpg",
-        "description": "Fresh banana",
-        "price": 1.99,
-        "type": "Fresh"
-      },
-      {
-        "id": 5,
-        "name": "Grape",
-        "image": "img/fruite-item-5.jpg",
-        "description": "Fresh orange",
-        "price": 3.49,
-        "type": "Organic"
-      },
-      {
-        "id": 6,
-        "name": "Apple",
-        "image": "img/fruite-item-6.jpg",
-        "description": "Fresh pineapple",
-        "price": 4.79,
-        "type": "Fresh"
-      },
-      {
-        "id": 7,
-        "name": "Grape",
-        "image": "img/fruite-item-5.jpg",
-        "description": "Fresh mango",
-        "price": 6.99,
-        "type": "Organic"
-      },
-      {
-        "id": 8,
-        "name": "Apple",
-        "image": "img/fruite-item-6.jpg",
-        "description": "Fresh peach",
-        "price": 3.99,
-        "type": "Fresh"
-      },
-      {
-        "id": 9,
-        "name": "Orange",
-        "image": "img/fruite-item-1.jpg",
-        "description": "Fresh kiwi",
-        "price": 2.49,
-        "type": "Organic"
-      },
-      {
-        "id": 10,
-        "name": "Banana",
-        "image": "img/fruite-item-3.jpg",
-        "description": "Fresh strawberry",
-        "price": 4.29,
-        "type": "Fresh"
-      }
-    ]
-  }
-  
+  "fruits": [
+    {
+      "id": "1",
+      "name": "Orange",
+      "image": "img/fruite-item-1.jpg",
+      "description": "Fresh grapes",
+      "price": 4.99,
+      "type": "Organic"
+    },
+    {
+      "id": "2",
+      "name": "Watermelon",
+      "image": "img/fruite-item-2.jpg",
+      "description": "Fresh watermelon",
+      "price": 5.99,
+      "type": "Fresh"
+    },
+    {
+      "id": "3",
+      "name": "Banana",
+      "image": "img/fruite-item-3.jpg",
+      "description": "Fresh apple",
+      "price": 2.99,
+      "type": "Organic"
+    },
+    {
+      "id": "4",
+      "name": "Orange",
+      "image": "img/fruite-item-1.jpg",
+      "description": "Fresh banana",
+      "price": 1.99,
+      "type": "Fresh"
+    },
+    {
+      "id": "5",
+      "name": "Grape",
+      "image": "img/fruite-item-5.jpg",
+      "description": "Fresh orange",
+      "price": 3.49,
+      "type": "Organic"
+    },
+    {
+      "id": "6",
+      "name": "Apple",
+      "image": "img/fruite-item-6.jpg",
+      "description": "Fresh pineapple",
+      "price": 4.79,
+      "type": "Fresh"
+    },
+    {
+      "id": "7",
+      "name": "Grape",
+      "image": "img/fruite-item-5.jpg",
+      "description": "Fresh mango",
+      "price": 6.99,
+      "type": "Organic"
+    },
+    {
+      "id": "8",
+      "name": "Apple",
+      "image": "img/fruite-item-6.jpg",
+      "description": "Fresh peach",
+      "price": 3.99,
+      "type": "Fresh"
+    },
+    {
+      "id": "9",
+      "name": "Orange",
+      "image": "img/fruite-item-1.jpg",
+      "description": "Fresh kiwi",
+      "price": 2.49,
+      "type": "Organic"
+    },
+    {
+      "id": "10",
+      "name": "Banana",
+      "image": "img/fruite-item-3.jpg",
+      "description": "Fresh strawberry",
+      "price": 4.29,
+      "type": "Fresh"
+    }
+  ],
+  "groceries": [
+    {
+      "name": "Apple",
+      "description": "Fresh apple",
+      "id": "1823"
+    },
+    {
+      "id": "196c",
+      "name": "orange",
+      "description": "orange juice"
+    },
+    {
+      "id": "18fb",
+      "name": "kiwi",
+      "description": "kiwi juice"
+    },
+    {
+      "id": "3be9",
+      "name": "pineapple",
+      "description": "a good winter fruit"
+    }
+  ]
+}

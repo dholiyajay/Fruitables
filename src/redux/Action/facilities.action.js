@@ -1,4 +1,4 @@
-import { DELETE_DATA, EDIT_DATA, FACILITIES_DATA, LOADING_FACILITY, START_LOADING, STOP_LOADING } from "../ActionType"
+import { DELETE_DATA, DELETE_GROCERIES, EDIT_DATA, EDIT_GROCERIES, FACILITIES_DATA, GROCERIES_DATA, LOADING_FACILITY, START_LOADING, STOP_LOADING } from "../ActionType"
 
 const handleLoading = () => (dispatch) => {
   dispatch({ type: LOADING_FACILITY })
@@ -20,15 +20,14 @@ export const editData = (data) => (dispatch) => {
   dispatch({ type: EDIT_DATA, payload: data })
 }
 
-// export const handleLoading = (isLoading) => (dispatch) => {
-//     dispatch({type: LOADING_DATA, payload: isLoading})
-// }
+export const addGroceries = (data) => (dispatch) => {
+  dispatch({type: GROCERIES_DATA, payload: data})
+}
 
-// actions.js
-// export const startLoading = () => ({
-//   type: START_LOADING,
-// });
+export const deleteGroceries = (data) => (dispatch) => {
+  dispatch({type: DELETE_GROCERIES, payload: data})
+}
 
-// export const stopLoading = () => ({
-//   type: STOP_LOADING,
-// });
+export const editGroceries = (data) => (dispatch) => {
+  dispatch({type: EDIT_GROCERIES, payload: data})
+}

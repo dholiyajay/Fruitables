@@ -23,7 +23,8 @@ const adminDrawerData = [
     {name: 'Fruits', icon:<RestaurantOutlinedIcon />, link: '/admin/fruits'},
     {name: 'Vegetables', icon:<SoupKitchenOutlinedIcon />, link: '/admin/vegetables'},
     {name: 'Category', icon:<FormatListNumberedIcon />, link: '/admin/category'},
-    {name: 'Facilties', icon:<FormatListNumberedIcon />, link: '/admin/facilties'}
+    {name: 'Facilties', icon:<FormatListNumberedIcon />, link: '/admin/facilties'},
+    {name: 'Groceries', icon:<FormatListNumberedIcon />, link: '/admin/groceries'},
 ]
 
 export default function Layout({ children }) {
