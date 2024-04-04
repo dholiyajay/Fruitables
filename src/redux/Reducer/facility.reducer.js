@@ -1,4 +1,4 @@
-import { DELETE_DATA, EDIT_DATA, FACILITIES_DATA, LOADING_FACILITY } from "../ActionType";
+import { DELETE_DATA, EDIT_DATA, FACILITIES_DATA, GET_FACILITIES, LOADING_FACILITY } from "../ActionType";
 
 const initialState = {
     facility: [],
@@ -10,7 +10,7 @@ export const facilityReducer = (state = initialState, action) => {
     console.log(action);
 
     switch (action.type) {
-        case LOADING_FACILITY: 
+        case LOADING_FACILITY:
             return {
                 ...state,
                 isLoading: true
@@ -37,22 +37,10 @@ export const facilityReducer = (state = initialState, action) => {
                 }),
                 isLoading: false
             };
-        // case LOADING_DATA:
-        //     return {
-        //         ...state,
-        //         isLoading: action.payload
-        //     }
-
-        // case START_LOADING:
-        //     return {
-        //         ...state,
-        //         isLoading: true,
-        //     };
-        // case STOP_LOADING:
-        //     return {
-        //         ...state,
-        //         isLoading: false,
-        //     };
+        case GET_FACILITIES:
+            return {
+                ...state
+            }
         default:
             return state
     }

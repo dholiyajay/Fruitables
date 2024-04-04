@@ -1,31 +1,37 @@
-import React, { useState } from 'react'
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import { object, string, number, date, InferType } from 'yup';
-import { useFormik } from 'formik';
-import { DataGrid } from '@mui/x-data-grid';
+import React, { useEffect, useState } from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import { useFormik } from "formik";
+import DialogTitle from "@mui/material/DialogTitle";
+import { object, string, number, date, InferType } from "yup";
+import { DataGrid } from "@mui/x-data-grid";
 import { useDispatch } from "react-redux";
+import {
+    addfacilities,
+    deleteData,
+    editData,
+} from "../../../../../redux/Action/facilities.action";
 import { useSelector } from "react-redux";
-import { addGroceries, deleteData, deleteGroceries, editGroceries } from '../../../../../redux/Action/facilities.action';
-import DeleteIcon from '@mui/icons-material/Delete';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import axios from 'axios';
+import DeleteIcon from "@mui/icons-material/Delete";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
+import Skeleton from '@mui/material/Skeleton';
+import { addProducts } from "../../../../../redux/Action/products.action";
 
-const AdminGroceries = () => {
-
+const Products = () => {
     const [open, setOpen] = React.useState(false);
-
     const [update, setUpdate] = useState(false);
 
-    const groceriesData = useSelector((state) => state.groceriesStore);
-    console.log(groceriesData)
-
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(addProducts());
+    }, [])
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -33,10 +39,11 @@ const AdminGroceries = () => {
 
     const handleClose = () => {
         setOpen(false);
-        formik.resetForm()
+        setUpdate(false);
+        formik.resetForm();
     };
 
-    let foodSchema = object({
+    let facilitySchema = object({
         name: string().required(),
         description: string().required(),
         price: number().required(),
@@ -44,39 +51,46 @@ const AdminGroceries = () => {
 
     const formik = useFormik({
         initialValues: {
-            name: '',
-            description: '',
-            price: '',
+            name: "",
+            description: "",
+            price: "",
         },
-        validationSchema: foodSchema,
-        onSubmit: async (values) => {
+        validationSchema: facilitySchema,
+        onSubmit: (values) => {
             if (update) {
-                dispatch(editGroceries(values));
+                dispatch(editData(values));
             } else {
-                try {
-                    const response = await axios.post('http://localhost:8000/groceries', values);
-                    dispatch(addGroceries(response.data));
-                } catch (error) {
-                    console.error('Error adding groceries:', error);
-                }
+                const rNo = Math.floor(Math.random() * 1000);
+                dispatch(addfacilities({ ...values, id: rNo }));
             }
+
             handleClose();
             formik.resetForm();
         },
-
     });
 
-    const { handleSubmit, handleChange, handleBlur, values, touched, errors } = formik
+    const { handleSubmit, handleChange, handleBlur, values, touched, errors } =
+        formik;
 
     const handleRemove = (id) => {
-        dispatch(deleteGroceries(id))
-    }
+        dispatch(deleteData(id));
+    };
 
     const handleEdit = (data) => {
         formik.setValues(data);
         setOpen(true);
         setUpdate(true);
-    }
+    };
+
+    const rows = [
+        {
+            id: 1,
+            name: "Apple",
+            description: "Fruit",
+            price: 100,
+        }
+    ]
+
 
     const columns = [
         { field: "name", headerName: "Name", width: 130 },
@@ -116,22 +130,20 @@ const AdminGroceries = () => {
 
     return (
         <>
-            <h1>Admin Groceries</h1>
-
 
             <Button variant="outlined" onClick={handleClickOpen}>
                 Open form dialog
             </Button>
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Add Groceries</DialogTitle>
+                <DialogTitle>Products</DialogTitle>
                 <form onSubmit={handleSubmit}>
                     <DialogContent>
                         <TextField
                             margin="dense"
                             id="name"
                             name="name"
-                            label="Add Food Name"
-                            type="name"
+                            label="Add Product Name"
+                            type="text"
                             fullWidth
                             variant="standard"
                             onChange={handleChange}
@@ -144,8 +156,8 @@ const AdminGroceries = () => {
                             margin="dense"
                             id="description"
                             name="description"
-                            label="Add Food Description"
-                            type="name"
+                            label="Add Product Description"
+                            type="text"
                             fullWidth
                             variant="standard"
                             onChange={handleChange}
@@ -162,8 +174,8 @@ const AdminGroceries = () => {
                             margin="dense"
                             id="price"
                             name="price"
-                            label="Add Food Price"
-                            type="number"
+                            label="Add Product Price"
+                            type="text"
                             fullWidth
                             variant="standard"
                             onChange={handleChange}
@@ -174,16 +186,21 @@ const AdminGroceries = () => {
                         />
                         <DialogActions>
                             <Button onClick={handleClose}>Cancel</Button>
-                            <Button type="submit">Add</Button>
+                            <Button type="submit">{update ? "Update" : "Add"}</Button>
                         </DialogActions>
                     </DialogContent>
                 </form>
             </Dialog>
 
+            <br />
+            <br />
 
-            <div style={{ height: 400, width: '100%' }}>
+
+
+            <div style={{ height: 400, width: "100%" }}>
+
                 <DataGrid
-                    rows={groceriesData.groceries}
+                    rows={rows}
                     columns={columns}
                     initialState={{
                         pagination: {
@@ -193,9 +210,11 @@ const AdminGroceries = () => {
                     pageSizeOptions={[5, 10]}
                     checkboxSelection
                 />
-            </div>
-        </>
-    )
-}
 
-export default AdminGroceries
+            </div>
+
+        </>
+    );
+};
+
+export default Products;

@@ -16,6 +16,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import RestaurantOutlinedIcon from '@mui/icons-material/RestaurantOutlined';
 import SoupKitchenOutlinedIcon from '@mui/icons-material/SoupKitchenOutlined';
 import { NavLink } from 'react-router-dom';
+import AddIcon from '@mui/icons-material/Add';
 
 const drawerWidth = 240;
 
@@ -23,8 +24,9 @@ const adminDrawerData = [
     {name: 'Fruits', icon:<RestaurantOutlinedIcon />, link: '/admin/fruits'},
     {name: 'Vegetables', icon:<SoupKitchenOutlinedIcon />, link: '/admin/vegetables'},
     {name: 'Category', icon:<FormatListNumberedIcon />, link: '/admin/category'},
-    {name: 'Facilties', icon:<FormatListNumberedIcon />, link: '/admin/facilties'},
-    {name: 'Groceries', icon:<FormatListNumberedIcon />, link: '/admin/groceries'},
+    {name: 'Facilties', icon:<AddIcon />, link: '/admin/facilties'},
+    {name: 'Groceries', icon:<AddIcon />, link: '/admin/groceries'},
+    {name: 'Products', icon:<AddIcon />, link: '/admin/products'},
 ]
 
 export default function Layout({ children }) {

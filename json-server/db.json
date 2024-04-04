@@ -1,5 +1,5 @@
 {
-  "fruits": [
+  "products": [
     {
       "id": "1",
       "name": "Orange",
@@ -85,22 +85,38 @@
     {
       "name": "Apple",
       "description": "Fresh apple",
-      "id": "1823"
+      "id": "1823",
+      "price": 2.99
     },
     {
       "id": "196c",
       "name": "orange",
-      "description": "orange juice"
+      "description": "orange juice",
+      "price": 3.99
     },
     {
       "id": "18fb",
       "name": "kiwi",
-      "description": "kiwi juice"
+      "description": "kiwi juice",
+      "price": 1.99
     },
     {
       "id": "3be9",
       "name": "pineapple",
-      "description": "a good winter fruit"
+      "description": "a good winter fruit",
+      "price": 4.99
+    },
+    {
+      "id": "0ea4",
+      "name": "guava",
+      "description": "healthy guava juice",
+      "price": 5.44
+    },
+    {
+      "id": "6afb",
+      "name": "jay",
+      "description": "kokiya",
+      "price": 9
     }
   ]
 }

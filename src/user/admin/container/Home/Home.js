@@ -4,6 +4,8 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import { useSelector } from 'react-redux'
 import axios from 'axios';
+import { useDispatch } from "react-redux";
+import { getFacilities } from '../../../../redux/Action/facilities.action';
 
 const Home = () => {
 
@@ -11,6 +13,12 @@ const Home = () => {
     console.log(facilityValues);
 
     const [getGroceriesData, setGroceriesData] = useState([]);
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getFacilities())
+    }, [])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -205,7 +213,7 @@ const Home = () => {
                                                     <h4>{value.name}</h4>
                                                     <p>{value.description}</p>
                                                     <div className="d-flex justify-content-between flex-lg-wrap">
-                                                        <p className="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                        <p className="text-dark fs-5 fw-bold mb-0">$ {value.price}</p>
                                                         <a href="#" className="btn border border-secondary rounded-pill px-3 text-primary"><i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart</a>
                                                     </div>
                                                 </div>

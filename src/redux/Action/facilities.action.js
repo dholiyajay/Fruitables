@@ -1,4 +1,4 @@
-import { DELETE_DATA, DELETE_GROCERIES, EDIT_DATA, EDIT_GROCERIES, FACILITIES_DATA, GROCERIES_DATA, LOADING_FACILITY, START_LOADING, STOP_LOADING } from "../ActionType"
+import { DELETE_DATA, DELETE_GROCERIES, EDIT_DATA, EDIT_GROCERIES, FACILITIES_DATA, GET_FACILITIES, GROCERIES_DATA, LOADING_FACILITY, START_LOADING, STOP_LOADING } from "../ActionType"
 
 const handleLoading = () => (dispatch) => {
   dispatch({ type: LOADING_FACILITY })
@@ -18,6 +18,10 @@ export const deleteData = (data) => (dispatch) => {
 
 export const editData = (data) => (dispatch) => {
   dispatch({ type: EDIT_DATA, payload: data })
+}
+
+export const getFacilities = () => (dispatch) => {
+  dispatch({type: GET_FACILITIES})
 }
 
 export const addGroceries = (data) => (dispatch) => {

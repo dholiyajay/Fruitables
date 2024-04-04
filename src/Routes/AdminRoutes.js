@@ -7,6 +7,7 @@ import Vegetables from '../user/admin/admin/components/Vegetables/Vegetables'
 import AdminCategory from '../user/admin/admin/components/AdminCategory/AdminCategory'
 import Facilties from '../user/admin/admin/components/Facilties/Facilties'
 import AdminGroceries from '../user/admin/admin/components/AdminGroceries/AdminGroceries'
+import Products from '../user/admin/admin/components/Products/Products'
 
 const AdminRoutes = () => {
     return (
@@ -18,6 +19,8 @@ const AdminRoutes = () => {
                     <Route path="/category" element={<AdminCategory />} />
                     <Route path="/facilties" element={<Facilties />} />
                     <Route path="/groceries" element={<AdminGroceries />} />
+                    <Route path="/products" element={<Products />} />
+
                 </Routes>
             </Layout>
         </>
