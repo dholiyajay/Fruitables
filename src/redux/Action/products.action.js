@@ -1,12 +1,16 @@
 
 import axios from 'axios';
 import { BASE_URL } from '../../utilities/Utilities';
+import { GET_PRODUCTS } from '../ActionType';
 
-export const addProducts = (data) => (dispatch) => {
+export const fetchProducts = (data) => (dispatch) => {
     try {
         axios.get(BASE_URL + 'products')
             .then((response) => {
-                console.log(response.data);
+                dispatch({
+                    type: GET_PRODUCTS,
+                    payload: response.data
+                })
             })
             .catch((error) => {
                 console.log(error);
@@ -16,4 +20,4 @@ export const addProducts = (data) => (dispatch) => {
     }
 }
 
-addProducts()
+fetchProducts()

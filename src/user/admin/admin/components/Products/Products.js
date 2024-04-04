@@ -21,16 +21,19 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import Skeleton from '@mui/material/Skeleton';
-import { addProducts } from "../../../../../redux/Action/products.action";
+import { fetchProducts } from "../../../../../redux/Action/products.action";
 
 const Products = () => {
     const [open, setOpen] = React.useState(false);
     const [update, setUpdate] = useState(false);
 
+    const productsData = useSelector((state) => state.productInAdmin);
+    console.log(productsData.products);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(addProducts());
+        dispatch(fetchProducts());
     }, [])
 
     const handleClickOpen = () => {
@@ -81,16 +84,6 @@ const Products = () => {
         setOpen(true);
         setUpdate(true);
     };
-
-    const rows = [
-        {
-            id: 1,
-            name: "Apple",
-            description: "Fruit",
-            price: 100,
-        }
-    ]
-
 
     const columns = [
         { field: "name", headerName: "Name", width: 130 },
@@ -200,7 +193,7 @@ const Products = () => {
             <div style={{ height: 400, width: "100%" }}>
 
                 <DataGrid
-                    rows={rows}
+                    rows={productsData.products}
                     columns={columns}
                     initialState={{
                         pagination: {
@@ -212,7 +205,6 @@ const Products = () => {
                 />
 
             </div>
-
         </>
     );
 };

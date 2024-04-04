@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import axios from 'axios';
 import { useDispatch } from "react-redux";
 import { getFacilities } from '../../../../redux/Action/facilities.action';
+import { fetchProducts } from '../../../../redux/Action/products.action';
 
 const Home = () => {
 
@@ -14,11 +15,18 @@ const Home = () => {
 
     const [getGroceriesData, setGroceriesData] = useState([]);
 
+    const displayProducts = useSelector((state) => state.productInAdmin);
+    console.log(displayProducts.products);
+
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getFacilities())
     }, [])
+
+    useEffect(() => {
+        dispatch(fetchProducts())
+    })
 
     useEffect(() => {
         const fetchData = async () => {
@@ -203,11 +211,11 @@ const Home = () => {
                         <div className="tab-content">
                             <div id="tab-1" className="tab-pane fade show p-0 active">
                                 <div className="row g-4 d-flex flex-wrap">
-                                    {getGroceriesData.map((value, index) => (
+                                    {displayProducts.products.map((value, index) => (
                                         <div key={index} className="col-md-6 col-lg-4 col-xl-3">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img">
-                                                    <img src="img/fruite-item-2.jpg" className="img-fluid w-100 rounded-top" alt />                                                </div>
+                                                    <img src={value.image} className="img-fluid w-100 rounded-top" alt />                                                </div>
                                                 <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>Fruits</div>
                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>{value.name}</h4>
@@ -220,6 +228,8 @@ const Home = () => {
                                             </div>
                                         </div>
                                     ))}
+
+
                                 </div>
                             </div>
                         </div>
