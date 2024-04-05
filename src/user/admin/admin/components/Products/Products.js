@@ -21,7 +21,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import Skeleton from '@mui/material/Skeleton';
-import { fetchProducts } from "../../../../../redux/Action/products.action";
+import { fetchProducts, removeProducts } from "../../../../../redux/Action/products.action";
 
 const Products = () => {
     const [open, setOpen] = React.useState(false);
@@ -76,7 +76,7 @@ const Products = () => {
         formik;
 
     const handleRemove = (id) => {
-        dispatch(deleteData(id));
+        dispatch(removeProducts(id));
     };
 
     const handleEdit = (data) => {

@@ -20,4 +20,15 @@ export const fetchProducts = (data) => (dispatch) => {
     }
 }
 
+export const removeProducts = (data) => (dispatch) => {
+    try {
+        axios.delete(BASE_URL + 'products/' + data)
+            .then(() => {
+                dispatch(fetchProducts())
+            });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 fetchProducts()

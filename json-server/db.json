@@ -1,22 +1,6 @@
 {
   "products": [
     {
-      "id": "1",
-      "name": "Orange",
-      "image": "img/fruite-item-1.jpg",
-      "description": "Fresh grapes",
-      "price": 4.99,
-      "type": "Organic"
-    },
-    {
-      "id": "2",
-      "name": "Watermelon",
-      "image": "img/fruite-item-2.jpg",
-      "description": "Fresh watermelon",
-      "price": 5.99,
-      "type": "Fresh"
-    },
-    {
       "id": "3",
       "name": "Banana",
       "image": "img/fruite-item-3.jpg",
@@ -55,30 +39,6 @@
       "description": "Fresh mango",
       "price": 6.99,
       "type": "Organic"
-    },
-    {
-      "id": "8",
-      "name": "Apple",
-      "image": "img/fruite-item-6.jpg",
-      "description": "Fresh peach",
-      "price": 3.99,
-      "type": "Fresh"
-    },
-    {
-      "id": "9",
-      "name": "Orange",
-      "image": "img/fruite-item-1.jpg",
-      "description": "Fresh kiwi",
-      "price": 2.49,
-      "type": "Organic"
-    },
-    {
-      "id": "10",
-      "name": "Banana",
-      "image": "img/fruite-item-3.jpg",
-      "description": "Fresh strawberry",
-      "price": 4.29,
-      "type": "Fresh"
     }
   ],
   "groceries": [

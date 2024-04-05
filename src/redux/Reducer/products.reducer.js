@@ -1,4 +1,4 @@
-import { GET_PRODUCTS } from "../ActionType";
+import { GET_PRODUCTS, REMOVE_PRODUCT } from "../ActionType";
 
 const initialState = {
     products: [],
@@ -16,6 +16,11 @@ export const productsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 products: action.payload
+            }
+        case REMOVE_PRODUCT:
+            return {
+                ...state,
+                products: state.products.filter((item) => item.id !== action.payload)
             }
         default:
             return state
