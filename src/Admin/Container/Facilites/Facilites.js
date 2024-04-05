@@ -31,15 +31,7 @@ function Facilites(props) {
     const facilitesVal = useSelector(state => state.addFacilities)
     console.log(facilitesVal);
 
-    // const getdata = () => {
-
-    //     axios.get('http://localhost:8000/Facilities')
-    //         .then((response) => {
-    //             if (response.data) {
-    //                 setData(response.data);
-    //             }
-    //         });
-    // }
+  
 
     useEffect(() => {
         dispatch(getFacilities())

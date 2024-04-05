@@ -1,7 +1,4 @@
-
-
 import React, { useEffect, useState } from 'react';
-
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -24,22 +21,13 @@ function OrganicProducts(props) {
 
     const [open, setOpen] = useState(false);
     const [update, setUpdate] = useState(false);
-    const [data, setData] = useState([]);
 
     const dispatch = useDispatch();
 
-    const organicVal = useSelector(state => state.OrganicProducts)
-    console.log(organicVal);
+    const producat = useSelector(state => state.OrganicProducts)
+    console.log(producat);
 
-    // const getdata = () => {
-
-    //     axios.get('http://localhost:8000/Organic')
-    //         .then((response) => {
-    //             if (response.data) {
-    //                 setData(response.data);
-    //             }
-    //         });
-    // }
+    
 
     useEffect(() => {
         dispatch(getOrganic());
@@ -185,7 +173,7 @@ function OrganicProducts(props) {
                     <br></br>
                     <Box sx={{ height: 400, width: '100%' }}>
                         <DataGrid
-                            rows={organicVal.Organic}
+                            rows={producat.Organic}
                             columns={columns}
                             initialState={{
                                 pagination: {

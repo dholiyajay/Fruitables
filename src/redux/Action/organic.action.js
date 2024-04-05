@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_ORGANIC_PRODUCTS, DELETE_ORGANIC_PRODUCTS, EDITE_ORGANIC_PRODUCTS, IS_LODING } from "../ActionType"
+import {  ADD_PRODUCTS, DELETE_PRODUCTS,  EDITE_PRODUCTS, IS_LODING } from "../ActionType"
 import { BASE_URL } from "../../Base/BaseUrl";
 
 export const getOrganic = () => (dispatch) => {
@@ -11,7 +11,7 @@ export const getOrganic = () => (dispatch) => {
             .then(res => {
                 console.log(res);
                 console.log(res.data);
-                dispatch({ type: ADD_ORGANIC_PRODUCTS, payload: res.data })
+                dispatch({ type: ADD_PRODUCTS, payload: res.data })
             })
             .catch((error) => {
                 console.log(error);
@@ -29,7 +29,7 @@ export const addOrganic = (odata) => (dispatch) => {
             .then(res => {
                 console.log(res);
                 console.log(res.data);
-                dispatch({ type: ADD_ORGANIC_PRODUCTS, payload: odata })
+                dispatch({ type: ADD_PRODUCTS, payload: odata })
             })
             .catch((error) => {
                 console.log(error);
@@ -62,7 +62,7 @@ export const editOrganic = (data) => (dispatch) => {
         console.log(error);
     }
 
-    dispatch({ type: EDITE_ORGANIC_PRODUCTS, payload: data });
+    dispatch({ type: EDITE_PRODUCTS, payload: data });
 }
 
 export const deleteOrganic = (id) => (dispatch) => {
@@ -82,7 +82,7 @@ export const deleteOrganic = (id) => (dispatch) => {
     } catch (error) {
         console.log(error);
     }
-    dispatch({ type: DELETE_ORGANIC_PRODUCTS, payload: id });
+    dispatch({ type: DELETE_PRODUCTS, payload: id });
 }
 
 export const isLodingOrganic = () => (dispatch) => {
