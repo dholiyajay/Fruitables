@@ -1,36 +1,41 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import Header from '../user/admin/component/Header/Header'
-import Footer from '../user/admin/component/Footer/Footer'
-import Shop from '../user/admin/container/Shop/Shop'
-import ShopDetail from '../user/admin/container/ShopDetail/ShopDetail'
-import Contact from '../user/admin/container/Contact/Contact'
-import Error404 from '../user/admin/container/Pages_SubPages/Error404'
-import Cart from '../user/admin/container/Pages_SubPages/Cart'
-import CheckOut from '../user/admin/container/Pages_SubPages/CheckOut'
-import Testimonials from '../user/admin/container/Pages_SubPages/Testimonials'
-import Home from '../user/admin/container/Home/Home'
+import React from 'react';
+import Header from '../user/component/Header/Header';
+import Home from '../user/Container/Home/Home';
+import Footer from '../user/component/Footer/Footer';
+import { Route, Routes } from 'react-router-dom';
+import Shop from '../user/Container/Shop/Shop';
+import ShopDetails from '../user/Container/Shop_Details/ShopDetails';
+import Cart from '../user/Container/Cart/Cart';
+import CheckOut from '../user/Container/CheckOut/CheckOut';
+import Testimonial from '../user/Container/Testimonial/Testimonial';
+import ErrorPage from '../user/Container/404Page/404Page';
+import Contact from '../user/Container/Contact/Contact';
+import UseParams from '../user/Container/useparams/UseParams';
+import PriveteRoutes from './PriveteRoutes';
 
-const UserRoutes = () => {
-    return (
-        <>
-            <Header />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/shop" element={<Shop />} />
-                <Route path="/shop/:id" element={<ShopDetail />} />
-                <Route path="/" element={<Home />}>
-                    <Route path="/shopdetail" element={<ShopDetail />} />
-                </Route>
-                <Route path='/contact' element={<Contact />} />
-                <Route path="/error" element={<Error404 />} />
-                <Route path='/cart' element={<Cart />} />
-                <Route path="/checkout" element={<CheckOut />} />
-                <Route path='/testimonials' element={<Testimonials />} />
-            </Routes>
-            <Footer />
-        </>
-    )
+function UserRoutes(props) {
+  return (
+    <>
+
+      <Header />
+      {/* <Route exact path="/" element={<Header/>}/> */}
+      <Routes>
+        <Route exact path="/:fname" element={<UseParams />} />
+        <Route exact path="/" element={<Home />} />
+        <Route element={<PriveteRoutes/>}>
+          <Route exact path="/shop" element={<Shop />} />
+          <Route exact path="/shop_details" element={<ShopDetails />} />
+          <Route exact path="/shop/:id" element={<ShopDetails />} />
+          <Route exact path="/cart" element={<Cart />} />
+        </Route>
+        <Route exact path="/chechOut" element={<CheckOut />} />
+        <Route exact path="/testimonial" element={<Testimonial />} />
+        <Route exact path="/404page" element={<ErrorPage />} />
+        <Route exact path="/contact" element={<Contact />} />
+      </Routes>
+      <Footer />
+    </>
+  );
 }
 
-export default UserRoutes
+export default UserRoutes;

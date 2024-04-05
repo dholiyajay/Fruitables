@@ -83,24 +83,52 @@
   ],
   "groceries": [
     {
-      "name": "Apple",
-      "description": "Fresh apple",
-      "id": "1823"
-    },
-    {
-      "id": "196c",
-      "name": "orange",
-      "description": "orange juice"
-    },
-    {
       "id": "18fb",
       "name": "kiwi",
+      "price": 3.45,
       "description": "kiwi juice"
     },
     {
       "id": "3be9",
       "name": "pineapple",
+      "price": 3.45,
       "description": "a good winter fruit"
+    },
+    {
+      "id": "f060",
+      "name": "Jaydholiya",
+      "price": 3.45,
+      "description": "ddsdf"
+    },
+    {
+      "id": "74e1",
+      "name": "Jaydholiya",
+      "price": 3.45,
+      "description": "ddsdf"
+    },
+    {
+      "id": "3697",
+      "name": "Jaydholiya",
+      "description": "ddsdf",
+      "price": "5252"
+    },
+    {
+      "id": "4c70",
+      "name": "animal",
+      "description": "best",
+      "price": "2000"
+    },
+    {
+      "id": 828,
+      "name": "mango",
+      "description": "ddsdf",
+      "price": 5252
+    },
+    {
+      "id": 497,
+      "name": "dd",
+      "description": "ddsdf",
+      "price": 5252
     }
   ]
 }

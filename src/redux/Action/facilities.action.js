@@ -1,33 +1,37 @@
-import { DELETE_DATA, DELETE_GROCERIES, EDIT_DATA, EDIT_GROCERIES, FACILITIES_DATA, GROCERIES_DATA, LOADING_FACILITY, START_LOADING, STOP_LOADING } from "../ActionType"
+import { ADD_FACILITIES, DELETE_FACILITIES, EDITE_FACILITIES, GET_FACILITIES, IS_LODING } from "../ActionType"
 
-const handleLoading = () => (dispatch) => {
-  dispatch({ type: LOADING_FACILITY })
+export const getFacilities = () => (dispatch) => {
+
+    dispatch(isLodingFacilities())
+    setTimeout(() => {
+        dispatch({ type: GET_FACILITIES })
+    }, 2000)
+
 }
 
-export const addfacilities = (data) => (dispatch) => {
-  dispatch(handleLoading())
+export const addFacilities = (data) => (dispatch) => {
 
-  setTimeout(() => {
-    dispatch({ type: FACILITIES_DATA, payload: data })
-  }, 2000)
+    dispatch(isLodingFacilities())
+    setTimeout(() => {
+        dispatch({ type: ADD_FACILITIES, payload: data })
+    }, 2000)
+
 }
 
-export const deleteData = (data) => (dispatch) => {
-  dispatch({ type: DELETE_DATA, payload: data })
+export const editFacilities = (data) => (dispatch) => {
+    dispatch(isLodingFacilities())
+    setTimeout(() => {
+        dispatch({ type: EDITE_FACILITIES, payload: data });
+    }, 2000)
 }
 
-export const editData = (data) => (dispatch) => {
-  dispatch({ type: EDIT_DATA, payload: data })
+export const deleteFacilities = (id) => (dispatch) => {
+    dispatch(isLodingFacilities())
+    setTimeout(() => {
+        dispatch({ type: DELETE_FACILITIES, payload: id });
+    }, 2000)
 }
 
-export const addGroceries = (data) => (dispatch) => {
-  dispatch({type: GROCERIES_DATA, payload: data})
-}
-
-export const deleteGroceries = (data) => (dispatch) => {
-  dispatch({type: DELETE_GROCERIES, payload: data})
-}
-
-export const editGroceries = (data) => (dispatch) => {
-  dispatch({type: EDIT_GROCERIES, payload: data})
+export const isLodingFacilities = () => (dispatch) => {
+    dispatch({ type: IS_LODING })
 }
