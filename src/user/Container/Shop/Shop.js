@@ -20,7 +20,7 @@ function Shop(props) {
     }, []);
 
     const getdata = async () => {
-        const response = await fetch('http://localhost:8000/Fruits')
+        const response = await fetch('http://localhost:8000/fruits')
         const data = await response.json()
         console.log(data);
         setFruitesdata(data);

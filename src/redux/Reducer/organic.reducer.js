@@ -17,6 +17,7 @@ export const organicReducer = (state = initialOrganic, action) => {
 
         return{
             ...state,
+            isLoding: false,
             Organic: action.payload
         }
         case ADD_PRODUCTS:

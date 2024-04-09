@@ -93,8 +93,8 @@ function OrganicProducts(props) {
             if (update) {
                 dispatch(editOrganic(values));
             } else {
-                const id = Math.floor(Math.random() * 1000)
-                dispatch(addOrganic({ ...values, id }))
+                
+                dispatch(addOrganic({ ...values }))
                
             }
             resetForm();

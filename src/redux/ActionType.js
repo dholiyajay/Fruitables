@@ -9,4 +9,9 @@ export const ADD_PRODUCTS = 'ADD_PRODUCTS';
 export const DELETE_PRODUCTS = 'DELETE_PRODUCTS';
 export const EDITE_PRODUCTS = 'EDITE_PRODUCTS';
 export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const ERROR_PRODUCTS = 'ERROR_PRODUCTS';
+
+
+export const GET_DATA = "GET_DATA";
+export const GET_REVIEW = "GET_REVIEW";
 

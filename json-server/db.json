@@ -81,48 +81,18 @@
       "type": "Fresh"
     }
   ],
-  "groceries": [
+  "groceries": [],
+  "review": [
     {
-      "id": "3be9",
-      "name": "pineapple",
-      "price": 3.45,
-      "description": "a good winter fruit"
+      "id": "b4e4"
     },
     {
-      "id": "f060",
-      "name": "Jaydholiya",
-      "price": 3.45,
-      "description": "ddsdf"
-    },
-    {
-      "id": "74e1",
-      "name": "Jaydholiya",
-      "price": 3.45,
-      "description": "ddsdf"
-    },
-    {
-      "id": "828",
-      "name": "mango",
-      "description": "ddsdf",
-      "price": 5252
-    },
-    {
-      "id": "497",
-      "name": "dd",
-      "description": "ddsdf",
-      "price": 5252
-    },
-    {
-      "id": 983,
-      "name": "Jaydholiya",
-      "description": "ddsdf",
-      "price": 5252
-    },
-    {
-      "id": 228,
-      "name": "mango",
-      "description": "best",
-      "price": 10000
+      "id": "b2c5",
+      "name": "jay",
+      "email": "eliteoverseasvarachha@gmail.com",
+      "review": "ffff",
+      "rating": "2.5",
+      "productId": "1"
     }
   ]
 }
