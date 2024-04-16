@@ -8,12 +8,20 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 
 import { object, string, number } from 'yup';
-import { useFormik } from 'formik';
+import { Formik, useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { Reviews, addReviews } from '../../../Redux/Action/Shopdetail.action';
+import Review from '../Review/Review';
+import { Reviews } from '../../../Redux/Action/review.action';
+
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { addToCart } from '../../../Redux/Action/addcart.action';
+import Counter from '../Counter/Counter';
+import AddToCart from '../addtocrat/addtocrat';
+import { addItem } from '../../../Redux/slice/crat.slice';
 
 
 
@@ -26,36 +34,29 @@ function Shop_detail(props) {
     dispatch(Reviews())
   }, []);
 
-  const dispatch = useDispatch();
+  
+
+  // const dispatch = useDispatch();
 
   const reviewdata = useSelector((state) => state.Review.Review)
-  console.log(reviewdata);
+  // console.log(reviewdata);
 
-  let reviewSchema = object({
-    name: string().required(),
-    email: string().email().required(),
-    review: string().required(),
-    rating: number().required(),
-  });
 
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      email: '',
-      review: '',
-      rating: ''
-    },
-    validationSchema: reviewSchema,
-    onSubmit: (values, { resetForm }) => {
+  const cartdata = useSelector((state) => state.AddtoCart);
+  console.log(cartdata);
+  
+  
+  // console.log(data);
 
-      dispatch(addReviews({ ...values, productId: id }));
+    const dispatch = useDispatch();
 
-      // alert(JSON.stringify({...values, proId: id}, null, 2));
-      formik.resetForm()
-    },
-  });
+    const handleAddToCart = ()  => {
+      console.log("dvdvd");
+      // console.log(data);
+      dispatch(addToCart(Fruitedetail));
+      dispatch(addItem(Fruitedetail));  
+  }
 
-  const { handleBlur, handleChange, handleSubmit, errors, values, touched } = formik
 
   const fruitdata = async () => {
     const response = await fetch('http://localhost:8000/fruits')
@@ -65,8 +66,24 @@ function Shop_detail(props) {
     setFruitesdetail(Fantastic);
   }
 
+  const handleEdit = (raw) => {
 
-  console.log(id);
+    // handleClickOpen();
+    Formik.setValues();
+    // setUpdate(true);
+    // getdata();
+  }
+
+  const handleDelete = (id) => {
+    // dispatch(deleteOrganic(id));
+  }
+
+  const handleClickOpen = () => {
+    dispatch(addItem(id)); 
+};
+
+
+  // console.log(id);
 
   const vegetableCarousel = {
     autoplay: true,
@@ -144,6 +161,7 @@ function Shop_detail(props) {
                   </div>
                   <p className="mb-4">{Fruitedetail?.discription}</p>
                   <p className="mb-4">Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish</p>
+
                   <div className="input-group quantity mb-5" style={{ width: 100 }}>
                     <div className="input-group-btn">
                       <button className="btn btn-sm btn-minus rounded-circle bg-light border">
@@ -157,9 +175,11 @@ function Shop_detail(props) {
                       </button>
                     </div>
                   </div>
-                  <a href="#" className="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart</a>
+                  {/* <Counter /> */}
+                  <a href="#" className="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary" onClick={handleClickOpen}><i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart</a>
+                  {/* <AddToCart data={{...Fruitedetail}} /> */}
                 </div>
-                <div className="col-lg-12">
+                {/* <div className="col-lg-12">
                   <nav>
                     <div className="nav nav-tabs mb-3">
                       <button className="nav-link active border-white border-bottom-0" type="button" role="tab" id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about" aria-controls="nav-about" aria-selected="true">Description</button>
@@ -229,7 +249,12 @@ function Shop_detail(props) {
                               <h5>{v.name}</h5>
                               <div className="d-flex mb-3">
                                 <Rating name="read-only" value={v.rating} readOnly />
+                                <div className='ms-auto'>
+                                  <EditIcon className='py-1' onClick={() => handleEdit()} />
+                                  <DeleteIcon className='py-1' onClick={() => handleDelete()} />
+                                </div>
                               </div>
+
                             </div>
                             <p>{v.review}</p>
                             <p>{v.email}</p>
@@ -238,7 +263,7 @@ function Shop_detail(props) {
                         )
 
                         )
-                      }
+                      } */}
                       {/* <div className="d-flex">
                         <img src="img/avatar.jpg" className="img-fluid rounded-circle p-3" style={{ width: 100, height: 100 }} alt />
                         <div className>
@@ -275,7 +300,7 @@ function Shop_detail(props) {
                             words etc. Susp endisse ultricies nisi vel quam suscipit </p>
                         </div>
                       </div> */}
-                    </div>
+                    {/* </div>
                     <div className="tab-pane" id="nav-vision" role="tabpanel">
                       <p className="text-dark">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
                         amet diam et eos labore. 3</p>
@@ -283,9 +308,11 @@ function Shop_detail(props) {
                         Clita erat ipsum et lorem et sit</p>
                     </div>
                   </div>
-                </div>
+                </div> */}
 
-                <form onSubmit={handleSubmit}>
+                <Review />
+
+                {/* <form onSubmit={handleSubmit}>
                   <h4 className="mb-5 fw-bold">Leave a Reply</h4>
                   <div className="row g-4">
                     <div className="col-lg-6">
@@ -359,12 +386,12 @@ function Shop_detail(props) {
                             </Stack>
                           </div>
                         </div>
-                        {/* <a href="#"  type='submit' className="btn border border-secondary text-primary rounded-pill px-4 py-3"> Post Comment</a> */}
+                        {/* <a href="#"  type='submit' className="btn border border-secondary text-primary rounded-pill px-4 py-3"> Post Comment</a>
                         <Button className="btn border border-secondary text-primary rounded-pill px-4 py-3" type="submit">Post Comment</Button>
                       </div>
                     </div>
                   </div>
-                </form>
+                </form> */}
 
               </div>
             </div>
@@ -415,7 +442,7 @@ function Shop_detail(props) {
                   <h4 className="mb-4">Featured products</h4>
                   <div className="d-flex align-items-center justify-content-start">
                     <div className="rounded" style={{ width: 100, height: 100 }}>
-                      <img src="img/featur-1.jpg" className="img-fluid rounded" alt="Image" />
+                      <img src="../img/featur-1.jpg" className="img-fluid rounded" alt="Image" />
                     </div>
                     <div>
                       <h6 className="mb-2">Big Banana</h6>
@@ -434,7 +461,7 @@ function Shop_detail(props) {
                   </div>
                   <div className="d-flex align-items-center justify-content-start">
                     <div className="rounded" style={{ width: 100, height: 100 }}>
-                      <img src="img/featur-2.jpg" className="img-fluid rounded" alt />
+                      <img src="../img/featur-2.jpg" className="img-fluid rounded" alt />
                     </div>
                     <div>
                       <h6 className="mb-2">Big Banana</h6>
@@ -453,7 +480,7 @@ function Shop_detail(props) {
                   </div>
                   <div className="d-flex align-items-center justify-content-start">
                     <div className="rounded" style={{ width: 100, height: 100 }}>
-                      <img src="img/featur-3.jpg" className="img-fluid rounded" alt />
+                      <img src="../img/featur-3.jpg" className="img-fluid rounded" alt />
                     </div>
                     <div>
                       <h6 className="mb-2">Big Banana</h6>
@@ -472,7 +499,7 @@ function Shop_detail(props) {
                   </div>
                   <div className="d-flex align-items-center justify-content-start">
                     <div className="rounded me-4" style={{ width: 100, height: 100 }}>
-                      <img src="img/vegetable-item-4.jpg" className="img-fluid rounded" alt />
+                      <img src="../img/vegetable-item-4.jpg" className="img-fluid rounded" alt />
                     </div>
                     <div>
                       <h6 className="mb-2">Big Banana</h6>
@@ -491,7 +518,7 @@ function Shop_detail(props) {
                   </div>
                   <div className="d-flex align-items-center justify-content-start">
                     <div className="rounded me-4" style={{ width: 100, height: 100 }}>
-                      <img src="img/vegetable-item-5.jpg" className="img-fluid rounded" alt />
+                      <img src="../img/vegetable-item-5.jpg" className="img-fluid rounded" alt />
                     </div>
                     <div>
                       <h6 className="mb-2">Big Banana</h6>
@@ -510,7 +537,7 @@ function Shop_detail(props) {
                   </div>
                   <div className="d-flex align-items-center justify-content-start">
                     <div className="rounded me-4" style={{ width: 100, height: 100 }}>
-                      <img src="img/vegetable-item-6.jpg" className="img-fluid rounded" alt />
+                      <img src="../img/vegetable-item-6.jpg" className="img-fluid rounded" alt />
                     </div>
                     <div>
                       <h6 className="mb-2">Big Banana</h6>
@@ -533,7 +560,7 @@ function Shop_detail(props) {
                 </div>
                 <div className="col-lg-12">
                   <div className="position-relative">
-                    <img src="img/banner-fruits.jpg" className="img-fluid w-100 rounded" alt />
+                    <img src="../img/banner-fruits.jpg" className="img-fluid w-100 rounded" alt />
                     <div className="position-absolute" style={{ top: '50%', right: 10, transform: 'translateY(-50%)' }}>
                       <h3 className="text-secondary fw-bold">Fresh <br /> Fruits <br /> Banner</h3>
                     </div>
@@ -547,7 +574,7 @@ function Shop_detail(props) {
             <OwlCarousel {...vegetableCarousel} className="owl-carousel vegetable-carousel justify-content-center">
               <div className="border border-primary rounded position-relative vesitable-item">
                 <div className="vesitable-img">
-                  <img src="img/vegetable-item-6.jpg" className="img-fluid w-100 rounded-top" alt />
+                  <img src="../img/vegetable-item-6.jpg" className="img-fluid w-100 rounded-top" alt />
                 </div>
                 <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style={{ top: 10, right: 10 }}>Vegetable</div>
                 <div className="p-4 pb-0 rounded-bottom">
@@ -561,7 +588,7 @@ function Shop_detail(props) {
               </div>
               <div className="border border-primary rounded position-relative vesitable-item">
                 <div className="vesitable-img">
-                  <img src="img/vegetable-item-1.jpg" className="img-fluid w-100 rounded-top" alt />
+                  <img src="../img/vegetable-item-1.jpg" className="img-fluid w-100 rounded-top" alt />
                 </div>
                 <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style={{ top: 10, right: 10 }}>Vegetable</div>
                 <div className="p-4 pb-0 rounded-bottom">
@@ -575,7 +602,7 @@ function Shop_detail(props) {
               </div>
               <div className="border border-primary rounded position-relative vesitable-item">
                 <div className="vesitable-img">
-                  <img src="img/vegetable-item-3.png" className="img-fluid w-100 rounded-top bg-light" alt />
+                  <img src="../img/vegetable-item-3.png" className="img-fluid w-100 rounded-top bg-light" alt />
                 </div>
                 <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style={{ top: 10, right: 10 }}>Vegetable</div>
                 <div className="p-4 pb-0 rounded-bottom">
@@ -589,7 +616,7 @@ function Shop_detail(props) {
               </div>
               <div className="border border-primary rounded position-relative vesitable-item">
                 <div className="vesitable-img">
-                  <img src="img/vegetable-item-4.jpg" className="img-fluid w-100 rounded-top" alt />
+                  <img src="../img/vegetable-item-4.jpg" className="img-fluid w-100 rounded-top" alt />
                 </div>
                 <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style={{ top: 10, right: 10 }}>Vegetable</div>
                 <div className="p-4 pb-0 rounded-bottom">
@@ -603,7 +630,7 @@ function Shop_detail(props) {
               </div>
               <div className="border border-primary rounded position-relative vesitable-item">
                 <div className="vesitable-img">
-                  <img src="img/vegetable-item-5.jpg" className="img-fluid w-100 rounded-top" alt />
+                  <img src="../img/vegetable-item-5.jpg" className="img-fluid w-100 rounded-top" alt />
                 </div>
                 <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style={{ top: 10, right: 10 }}>Vegetable</div>
                 <div className="p-4 pb-0 rounded-bottom">
@@ -617,7 +644,7 @@ function Shop_detail(props) {
               </div>
               <div className="border border-primary rounded position-relative vesitable-item">
                 <div className="vesitable-img">
-                  <img src="img/vegetable-item-6.jpg" className="img-fluid w-100 rounded-top" alt />
+                  <img src="../img/vegetable-item-6.jpg" className="img-fluid w-100 rounded-top" alt />
                 </div>
                 <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style={{ top: 10, right: 10 }}>Vegetable</div>
                 <div className="p-4 pb-0 rounded-bottom">
@@ -631,7 +658,7 @@ function Shop_detail(props) {
               </div>
               <div className="border border-primary rounded position-relative vesitable-item">
                 <div className="vesitable-img">
-                  <img src="img/vegetable-item-5.jpg" className="img-fluid w-100 rounded-top" alt />
+                  <img src="../img/vegetable-item-5.jpg" className="img-fluid w-100 rounded-top" alt />
                 </div>
                 <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style={{ top: 10, right: 10 }}>Vegetable</div>
                 <div className="p-4 pb-0 rounded-bottom">
@@ -645,7 +672,7 @@ function Shop_detail(props) {
               </div>
               <div className="border border-primary rounded position-relative vesitable-item">
                 <div className="vesitable-img">
-                  <img src="img/vegetable-item-6.jpg" className="img-fluid w-100 rounded-top" alt />
+                  <img src="../img/vegetable-item-6.jpg" className="img-fluid w-100 rounded-top" alt />
                 </div>
                 <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style={{ top: 10, right: 10 }}>Vegetable</div>
                 <div className="p-4 pb-0 rounded-bottom">

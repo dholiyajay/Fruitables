@@ -14,4 +14,13 @@ export const ERROR_PRODUCTS = 'ERROR_PRODUCTS';
 
 export const GET_DATA = "GET_DATA";
 export const GET_REVIEW = "GET_REVIEW";
+export const DELETE_REVIEW = "DELETE_REVIEW";
+export const EDITE_REVIEW = "EDITE_REVIEW"
+
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const DELETE_TO_CART = 'DELETE_TO_CART';
+export const GET_DATA_TO_CART = 'GET_DATA_TO_CART';
+export const ERROR = 'ERROR';
+
+
 

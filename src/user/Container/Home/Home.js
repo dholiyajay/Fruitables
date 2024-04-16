@@ -242,7 +242,7 @@ function Home(props) {
                   </li>
                   <li className="nav-item">
                     <a className="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-5">
-                      <span className="text-dark" style={{ width: 130 }}>Meat</span>
+                      <span className="text-dark" style={{ width: 130 }}>Juice</span>
                     </a>
                   </li>
                 </ul>
