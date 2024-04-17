@@ -47,7 +47,7 @@ function Cart(props) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {
+                              {
                                     cratadd.map((p) => {
                                         <tr>
                                             <th scope="row">
