@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 
 const initialState = {
-    cartDATA: []
+    cartD: []
 }
 
 export const cartslice = createSlice({
@@ -13,13 +13,13 @@ export const cartslice = createSlice({
         addItem: (state, action) => {
             console.log(action);
 
-            let pAve = state.cartDATA.some((item) => item.pid === action.payload)
+            let pAve = state.cartD.some((item) => item.pid === action.payload)
 
             if (pAve) {
-                let index = state.cartDATA.findIndex((item) => item.pid === action.payload)
-                state.cartDATA[index].qut++
+                let index = state.cartD.findIndex((item) => item.pid === action.payload)
+                state.cartD[index].qut++
             } else {
-                state.cartDATA.push({
+                state.cartD.push({
                     pid: action.payload,
                     qut: 1
                 })

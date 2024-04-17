@@ -1,6 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDataToCart } from '../../../Redux/Action/addcart.action';
 
 function Cart(props) {
+
+    const crat = useSelector((state) => state.AddtoCart);
+
+    const addcart = useSelector((state) => state.OrganicProducts);
+
+    const cratadd = crat.cartD.map((v) => {
+        const data = addcart.Organic.find((v1) => v1.id == v.pid)
+        return { ...data, que: v.qut }
+    })
+
+    console.log(cratadd);
+
+
+
+
+
     return (
         <div>
             {/* Single Page Header start */}
@@ -29,7 +47,47 @@ function Cart(props) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                {
+                                    cratadd.map((p) => {
+                                        <tr>
+                                            <th scope="row">
+                                                <div className="d-flex align-items-center">
+                                                    <img src={p.img} className="img-fluid me-5 rounded-circle" style={{ width: 80, height: 80 }} alt />
+                                                </div>
+                                            </th>
+                                            <td>
+                                                <p className="mb-0 mt-4">{p.name}</p>
+                                            </td>
+                                            <td>
+                                                <p className="mb-0 mt-4">{p.price} $</p>
+                                            </td>
+                                            <td>
+                                                <div className="input-group quantity mt-4" style={{ width: 100 }}>
+                                                    <div className="input-group-btn">
+                                                        <button className="btn btn-sm btn-minus rounded-circle bg-light border">
+                                                            <i className="fa fa-minus" />
+                                                        </button>
+                                                    </div>
+                                                    <input type="text" className="form-control form-control-sm text-center border-0" defaultValue={1} />
+                                                    <div className="input-group-btn">
+                                                        <button className="btn btn-sm btn-plus rounded-circle bg-light border">
+                                                            <i className="fa fa-plus" />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p className="mb-0 mt-4">{p.price} $</p>
+                                            </td>
+                                            <td>
+                                                <button className="btn btn-md rounded-circle bg-light border mt-4">
+                                                    <i className="fa fa-times text-danger" />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    })
+                                }
+                                {/* <tr>
                                     <th scope="row">
                                         <div className="d-flex align-items-center">
                                             <img src="img/vegetable-item-3.png" className="img-fluid me-5 rounded-circle" style={{ width: 80, height: 80 }} alt />
@@ -136,7 +194,7 @@ function Cart(props) {
                                             <i className="fa fa-times text-danger" />
                                         </button>
                                     </td>
-                                </tr>
+                                </tr> */}
                             </tbody>
                         </table>
                     </div>

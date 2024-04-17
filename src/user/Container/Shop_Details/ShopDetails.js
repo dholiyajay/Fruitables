@@ -34,7 +34,7 @@ function Shop_detail(props) {
     dispatch(Reviews())
   }, []);
 
-  
+
 
   // const dispatch = useDispatch();
 
@@ -44,17 +44,17 @@ function Shop_detail(props) {
 
   const cartdata = useSelector((state) => state.AddtoCart);
   console.log(cartdata);
-  
-  
+
+
   // console.log(data);
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const handleAddToCart = ()  => {
-      console.log("dvdvd");
-      // console.log(data);
-      dispatch(addToCart(Fruitedetail));
-      dispatch(addItem(Fruitedetail));  
+  const handleAddToCart = () => {
+    console.log("dvdvd");
+    // console.log(data);
+    dispatch(addToCart(Fruitedetail));
+    dispatch(addItem(Fruitedetail));
   }
 
 
@@ -79,8 +79,8 @@ function Shop_detail(props) {
   }
 
   const handleClickOpen = () => {
-    dispatch(addItem(id)); 
-};
+    dispatch(addItem(id));
+  };
 
 
   // console.log(id);
@@ -264,7 +264,7 @@ function Shop_detail(props) {
 
                         )
                       } */}
-                      {/* <div className="d-flex">
+                {/* <div className="d-flex">
                         <img src="img/avatar.jpg" className="img-fluid rounded-circle p-3" style={{ width: 100, height: 100 }} alt />
                         <div className>
                           <p className="mb-2" style={{ fontSize: 14 }}>April 12, 2024</p>
@@ -300,7 +300,7 @@ function Shop_detail(props) {
                             words etc. Susp endisse ultricies nisi vel quam suscipit </p>
                         </div>
                       </div> */}
-                    {/* </div>
+                {/* </div>
                     <div className="tab-pane" id="nav-vision" role="tabpanel">
                       <p className="text-dark">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
                         amet diam et eos labore. 3</p>

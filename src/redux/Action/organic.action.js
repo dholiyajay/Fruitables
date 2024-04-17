@@ -7,7 +7,7 @@ export const getOrganic = () => (dispatch) => {
     dispatch(isLodingOrganic())
 
     try {
-        axios.get(BASE_URL + 'groceries')
+        axios.get(BASE_URL + 'fruits')
             .then(res => {
                 console.log(res);
                 console.log(res.data);
@@ -25,7 +25,7 @@ export const getOrganic = () => (dispatch) => {
 export const addOrganic = (odata) => (dispatch) => {
     dispatch(isLodingOrganic())
     try {
-        axios.post(BASE_URL + 'groceries', odata)
+        axios.post(BASE_URL + 'fruits', odata)
             .then(res => {
                 console.log(res);
                 console.log(res.data);
@@ -54,7 +54,7 @@ export const editOrganic = (data) => (dispatch) => {
 
     try {
         axios
-            .put(BASE_URL + 'groceries/' + data.id, data)
+            .put(BASE_URL + 'fruits/' + data.id, data)
             .then(res => {
                 console.log(res);
                 console.log(res.data);
@@ -75,7 +75,7 @@ export const deleteOrganic = (id) => (dispatch) => {
     dispatch(isLodingOrganic())
     try {
         axios
-            .delete(BASE_URL + 'groceries/' + id)
+            .delete(BASE_URL + 'fruits/' + id)
             .then(res => {
                 console.log(res);
                 console.log(res.data);

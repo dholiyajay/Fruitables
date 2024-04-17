@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getOrganic } from '../../../Redux/Action/organic.action';
 // import { useMatch, Link, useParams, Switch, Route, Routes, useRoute , useRoutesMatch } from 'react-router-dom';
 
 function Shop(props) {
@@ -15,26 +17,31 @@ function Shop(props) {
     // console.log(price);
 
     console.log(search, price, type, sortdata);
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        getdata()
+        dispatch(getOrganic())
     }, []);
 
-    const getdata = async () => {
-        const response = await fetch('http://localhost:8000/fruits')
-        const data = await response.json()
-        console.log(data);
-        setFruitesdata(data);
+    const product = useSelector((state) => state.OrganicProducts)
+    console.log(product);
 
-        const unique = [];
-        data.map((v) => {
-            if (!unique.includes(v.name)) {
-                unique.push(v.name)
-            }
-        });
+    // const getdata = async () => {
+    //     const response = await fetch('http://localhost:8000/fruits')
+    //     const data = await response.json()
+    //     console.log(data);
+    //     setFruitesdata(data);
 
-        setCatagory(unique);
-        console.log(unique, catagory);
-    }
+    //     const unique = [];
+    //     data.map((v) => {
+    //         if (!unique.includes(v.name)) {
+    //             unique.push(v.name)
+    //         }
+    //     });
+
+    //     setCatagory(unique);
+    //     console.log(unique, catagory);
+    // }
     console.log(catagory, selectCat);
 
     const filterCatagory = () => {
@@ -63,7 +70,7 @@ function Shop(props) {
         }
 
 
-        let sorting = filterData ;
+        let sorting = filterData;
 
         if (sortdata !== '') {
 
@@ -75,11 +82,11 @@ function Shop(props) {
                     return (b.price - a.price);
                 }
 
-             
+
             })
         } else {
-           sorting = filterData;
-          
+            sorting = filterData;
+
         }
 
         return sorting;
@@ -291,7 +298,7 @@ function Shop(props) {
                                 <div className="col-lg-9">
                                     <div className="row g-4 justify-content-center">
                                         {
-                                            finalData.map((v) => (
+                                            product.Organic.map((v) => (
                                                 <div className="col-md-6 col-lg-6 col-xl-4">
                                                     <Link to={`/shop/${v.id}`}>
                                                         <div className="rounded position-relative fruite-item">
