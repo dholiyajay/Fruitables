@@ -21,13 +21,18 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { addToCart } from '../../../Redux/Action/addcart.action';
 import Counter from '../Counter/Counter';
 import AddToCart from '../addtocrat/addtocrat';
-import { addItem } from '../../../Redux/slice/crat.slice';
+import { addItem, decremnet, increament } from '../../../Redux/slice/crat.slice';
+import Cart from '../Cart/Cart';
+
+
 
 
 
 function Shop_detail(props) {
 
   const [Fruitedetail, setFruitesdetail] = useState([]);
+  const [count, setcount] = useState(1)
+
   const { id } = useParams();
   useEffect(() => {
     fruitdata()
@@ -47,6 +52,9 @@ function Shop_detail(props) {
 
 
   // console.log(data);
+  // const cartQuantity = useSelector((state) => state.);
+  // console.log(cartQuantity);
+
 
   const dispatch = useDispatch();
 
@@ -56,6 +64,20 @@ function Shop_detail(props) {
     dispatch(addToCart(Fruitedetail));
     dispatch(addItem(Fruitedetail));
   }
+
+  const hendalince = () => {
+    setcount((v) => v + 1);
+  };
+
+  const hendaldecre = () => {
+    if (count > 1) {
+      setcount((v) => v - 1);
+    }
+
+  };
+
+  const qutycrat = cartdata.cartD.reduce((acc, v, i) => acc + v.qut, 0)
+
 
 
   const fruitdata = async () => {
@@ -79,8 +101,10 @@ function Shop_detail(props) {
   }
 
   const handleClickOpen = () => {
-    dispatch(addItem(id));
+    dispatch(addItem({ id: id, que: count }));
   };
+
+
 
 
   // console.log(id);
@@ -164,13 +188,14 @@ function Shop_detail(props) {
 
                   <div className="input-group quantity mb-5" style={{ width: 100 }}>
                     <div className="input-group-btn">
-                      <button className="btn btn-sm btn-minus rounded-circle bg-light border">
+                      <button className="btn btn-sm btn-minus rounded-circle bg-light border" onClick={hendaldecre}>
                         <i className="fa fa-minus" />
                       </button>
                     </div>
-                    <input type="text" className="form-control form-control-sm text-center border-0" defaultValue={1} />
+                    <span type="text" className="form-control form-control-sm text-center border-0"  >{count}
+                    </span>
                     <div className="input-group-btn">
-                      <button className="btn btn-sm btn-plus rounded-circle bg-light border">
+                      <button className="btn btn-sm btn-plus rounded-circle bg-light border" onClick={hendalince}>
                         <i className="fa fa-plus" />
                       </button>
                     </div>

@@ -31,7 +31,7 @@ function Facilites(props) {
     const facilitesVal = useSelector(state => state.addFacilities)
     console.log(facilitesVal);
 
-  
+
 
     useEffect(() => {
         dispatch(getFacilities())
@@ -162,7 +162,7 @@ function Facilites(props) {
                     <br></br>
                     <Box sx={{ height: 400, width: '100%' }}>
                         <DataGrid
-                            rows={facilitesVal.Facilities}
+                            rows={facilitesVal.facilites || []}
                             // rows={data}
                             columns={columns}
                             initialState={{

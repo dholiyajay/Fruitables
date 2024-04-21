@@ -19,7 +19,7 @@ function Header(props) {
 
   const datacrat = useSelector((state) => state.AddtoCart);
 
-  const qutycrat = datacrat.cartD.reduce((acc, v, i) => acc + v.qut, 0)
+  const qutycrat = datacrat.cartD.reduce((acc, v, i) => acc + v.count, 0)
 
   return (
     <div>

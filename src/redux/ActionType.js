@@ -22,5 +22,15 @@ export const DELETE_TO_CART = 'DELETE_TO_CART';
 export const GET_DATA_TO_CART = 'GET_DATA_TO_CART';
 export const ERROR = 'ERROR';
 
+export const ADD_TO_COUPON = 'ADD_TO_COUPON';
+export const EDIT_TO_COUPON = 'EDIT_TO_COUPON';
+export const DELETE_TO_COUPON = 'DELETE_TO_COUPON';
+export const GET_DATA_TO_COUPON = 'GET_DATA_TO_COUPON';
+
+
+
+
+
+
 
 

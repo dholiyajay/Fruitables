@@ -1,8 +1,43 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDataToCart } from '../../../Redux/Action/addcart.action';
+import { increamentCount } from '../../../Redux/Count.slice';
+import { decremnet, increament, removecrat } from '../../../Redux/slice/crat.slice';
+import { getCoupon } from '../../../Redux/slice/couponSlice';
 
 function Cart(props) {
+
+    const [isValid, setIsValid] = useState(false);
+    const [couponApplied, setCouponApplied] = useState('');
+
+
+    const couponFromAdmin = useSelector(state => state.couponInCart);
+    console.log(couponFromAdmin.coupon);
+
+    const handleApplyCoupon = () => {
+        const appliedCouponDetails = couponFromAdmin.coupon.find(v => v.couponename === couponApplied);
+
+        if (appliedCouponDetails) {
+            console.log('Applied');
+            setIsValid(true);
+        } else {
+            console.log('Not Applied');
+            setIsValid(false);
+        }
+    };
+
+    const getDiscountedTotal = () => {
+        const appliedCouponDetails = couponFromAdmin.coupon.find(v => v.couponename === couponApplied);
+
+        if (appliedCouponDetails) {
+            const discountPercentage = appliedCouponDetails.percentage / 100;
+            return cratadd.reduce((a, b) => a + b.price * b.quantity, 0) * (1 - discountPercentage);
+        }
+
+        return cratadd.reduce((a, b) => a + b.price * b.quantity, 0);
+    };
+
+
 
     const crat = useSelector((state) => state.AddtoCart);
 
@@ -10,12 +45,32 @@ function Cart(props) {
 
     const cratadd = crat.cartD.map((v) => {
         const data = addcart.Organic.find((v1) => v1.id == v.pid)
-        return { ...data, que: v.qut }
+        return { ...data, count: v.count }
     })
+
+    const totalPrice = cratadd.reduce((acc, item) => acc + item.price * item.count, 0);
+
 
     console.log(cratadd);
 
+    const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(getCoupon())
+    }, [dispatch])
+
+    const hendalince = (id) => {
+        console.log(id);
+        dispatch(increament(id))
+    }
+
+    const hendaldecre = (id) => {
+        dispatch(decremnet(id))
+    }
+
+    const hendalremove = (id) => {
+        dispatch(removecrat(id))
+    }
 
 
 
@@ -47,12 +102,12 @@ function Cart(props) {
                                 </tr>
                             </thead>
                             <tbody>
-                              {
-                                    cratadd.map((p) => {
-                                        <tr>
+                                {
+                                    cratadd.map((p) => (
+                                        <tr key={p.id}>
                                             <th scope="row">
                                                 <div className="d-flex align-items-center">
-                                                    <img src={p.img} className="img-fluid me-5 rounded-circle" style={{ width: 80, height: 80 }} alt />
+                                                    <img src={p.image} className="img-fluid me-5 rounded-circle" style={{ width: 80, height: 80 }} alt={p.name} />
                                                 </div>
                                             </th>
                                             <td>
@@ -64,29 +119,31 @@ function Cart(props) {
                                             <td>
                                                 <div className="input-group quantity mt-4" style={{ width: 100 }}>
                                                     <div className="input-group-btn">
-                                                        <button className="btn btn-sm btn-minus rounded-circle bg-light border">
+                                                        <button className="btn btn-sm btn-minus rounded-circle bg-light border" onClick={() => hendaldecre(p.id)} >
                                                             <i className="fa fa-minus" />
                                                         </button>
                                                     </div>
-                                                    <input type="text" className="form-control form-control-sm text-center border-0" defaultValue={1} />
+                                                    <span className="form-control form-control-sm text-center border-0"> {p.count}
+                                                    </span>
                                                     <div className="input-group-btn">
-                                                        <button className="btn btn-sm btn-plus rounded-circle bg-light border">
+                                                        <button className="btn btn-sm btn-plus rounded-circle bg-light border" onClick={() => hendalince(p.id)}>
                                                             <i className="fa fa-plus" />
                                                         </button>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
-                                                <p className="mb-0 mt-4">{p.price} $</p>
+                                                <p className="mb-0 mt-4">{p.price * p.count} $</p>
                                             </td>
                                             <td>
                                                 <button className="btn btn-md rounded-circle bg-light border mt-4">
-                                                    <i className="fa fa-times text-danger" />
+                                                    <i className="fa fa-times text-danger" onClick={() => hendalremove(p.id)} />
                                                 </button>
                                             </td>
                                         </tr>
-                                    })
+                                    ))
                                 }
+
                                 {/* <tr>
                                     <th scope="row">
                                         <div className="d-flex align-items-center">
@@ -199,16 +256,47 @@ function Cart(props) {
                         </table>
                     </div>
                     <div className="mt-5">
-                        <input type="text" className="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code" />
-                        <button className="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
+                        <input
+                            type="text"
+                            className="border-0 border-bottom rounded me-5 py-3 mb-4"
+                            placeholder="Coupon Code"
+                            onChange={(e) => setCouponApplied(e.target.value)}
+                        />
+                        <button onClick={handleApplyCoupon} className="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
+
+                        <span className="ms-5">
+                            {
+                                isValid ? <p className="text-success">Coupon Applied: {couponApplied}</p> : null
+                            }
+                            {
+                                !isValid && <p className="text-danger">Coupon Not Applied</p>
+                            }
+                        </span>
+
+
                     </div>
+
                     <div className="row g-4 justify-content-end">
                         <div className="col-8" />
                         <div className="col-sm-8 col-md-7 col-lg-6 col-xl-4">
                             <div className="bg-light rounded">
                                 <div className="p-4">
                                     <h1 className="display-6 mb-4">Cart <span className="fw-normal">Total</span></h1>
-                                    <div className="d-flex justify-content-between mb-4">
+                                    {
+                                        cratadd.map((item, index) => (
+                                            <div key={index} className="mb-3">
+                                                <div className="d-flex justify-content-between align-items-center mb-2">
+                                                    <h5 className="mb-0">{item.name}</h5>
+                                                    <p className="mb-0">$ {item.price.toFixed(2)}</p>
+                                                </div>
+                                                <div className="d-flex justify-content-between align-items-center">
+                                                    <p className="mb-0">Quantity: {item.count}</p>
+                                                    <p className="mb-0">$ {(item.price * item.count).toFixed(2)}</p>
+                                                </div>
+                                            </div>
+                                        ))
+                                    }
+                                    {/* <div className="d-flex justify-content-between mb-4">
                                         <h5 className="mb-0 me-4">Subtotal:</h5>
                                         <p className="mb-0">$96.00</p>
                                     </div>
@@ -218,16 +306,29 @@ function Cart(props) {
                                             <p className="mb-0">Flat rate: $3.00</p>
                                         </div>
                                     </div>
-                                    <p className="mb-0 text-end">Shipping to Ukraine.</p>
+                                    <p className="mb-0 text-end">Shipping to Ukraine.</p> */}
                                 </div>
                                 <div className="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                                     <h5 className="mb-0 ps-4 me-4">Total</h5>
-                                    <p className="mb-0 pe-4">$99.00</p>
+                                    <p className="mb-0 fw-bold text-primary ">
+
+                                        {
+                                            isValid && couponApplied
+                                                ? `$ ${getDiscountedTotal().toFixed(2)} (${couponFromAdmin.coupon.find(v => v.couponename === couponApplied).percentage}% discount applied)`
+                                                : `$ ${cratadd.reduce((a, b) => a + b.price * b.count, 0).toFixed(2)}`
+                                        }
+
+
+                                    </p>
+                                    {/* <p className="mb-0 pe-4">{totalPrice.toFixed(2)}</p>  */}
                                 </div>
                                 <button className="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
                             </div>
                         </div>
                     </div>
+
+
+
                 </div>
             </div>
             {/* Cart Page End */}

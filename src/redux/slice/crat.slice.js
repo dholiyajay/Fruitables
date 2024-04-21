@@ -1,5 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
-
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     cartD: []
@@ -11,25 +10,30 @@ export const cartslice = createSlice({
 
     reducers: {
         addItem: (state, action) => {
-            console.log(action);
+            const existingItemIndex = state.cartD.findIndex(item => item.pid === action.payload.id);
 
-            let pAve = state.cartD.some((item) => item.pid === action.payload)
-
-            if (pAve) {
-                let index = state.cartD.findIndex((item) => item.pid === action.payload)
-                state.cartD[index].qut++
+            if (existingItemIndex !== -1) {
+                state.cartD[existingItemIndex].count += action.payload.que;
             } else {
-                state.cartD.push({
-                    pid: action.payload,
-                    qut: 1
-                })
+                state.cartD.push({ pid: action.payload.id, count: action.payload.que });
             }
-
-
-
+        },
+        decremnet: (state, action) => {
+            const index = state.cartD.findIndex(item => item.pid === action.payload);
+            if (state.cartD[index].count > 1) {
+                state.cartD[index].count--;
+            }
+        },
+        increament: (state, action) => {
+            const index = state.cartD.findIndex(item => item.pid === action.payload);
+            state.cartD[index].count++;
+        },
+        removecrat: (state, action) => {
+            const index = state.cartD.findIndex(item => item.pid === action.payload);
+            state.cartD.splice(index, 1);
         }
     }
 });
 
-export const { addItem } = cartslice.actions
-export default cartslice.reducer
+export const { addItem, increament, decremnet, removecrat } = cartslice.actions;
+export default cartslice.reducer;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getOrganic } from '../../../Redux/Action/organic.action';
+import { addItem } from '../../../Redux/slice/crat.slice';
 // import { useMatch, Link, useParams, Switch, Route, Routes, useRoute , useRoutesMatch } from 'react-router-dom';
 
 function Shop(props) {
@@ -22,6 +23,11 @@ function Shop(props) {
     useEffect(() => {
         dispatch(getOrganic())
     }, []);
+
+    const handleAdd = (id, event) => {
+        event.preventDefault()
+        dispatch(addItem(id))
+    }
 
     const product = useSelector((state) => state.OrganicProducts)
     console.log(product);
@@ -308,10 +314,13 @@ function Shop(props) {
                                                             <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>{v.category}</div>
                                                             <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                                 <h4>{v.name}</h4>
-                                                                <p>{v.discription}</p>
+                                                                <p>{v.description}</p>
                                                                 <div className="d-flex justify-content-between flex-lg-wrap">
                                                                     <p className="text-dark fs-5 fw-bold mb-0">${v.price} / kg</p>
-                                                                    <a href="#" className="btn border border-secondary rounded-pill px-3 text-primary"><i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart</a>
+                                                                    
+                                                                    <a className="btn border border-secondary rounded-pill px-3 text-primary" onClick={(event) => handleAdd(v.id,event)}>
+                                                                        <i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart
+                                                                    </a>
                                                                 </div>
                                                             </div>
                                                         </div>
