@@ -12,46 +12,46 @@ export const couponSlice = createSlice({
     name: "coupon",
     initialState: initialState,
     reducers: {
-        getCouponStart: (state) => {
+        getCouponfirst: (state) => {
             state.isLoading = true;
             state.error = null;
         },
-        getCouponSuccess: (state, action) => {
+        getCouponright: (state, action) => {
             state.coupon = action.payload;
             state.isLoading = false;
         },
-        getCouponFailure: (state, action) => {
+        getCoupongo: (state, action) => {
             state.isLoading = false;
             state.error = action.payload;
         },
-        addCouponStart: (state) => {
+        addCouponlast: (state) => {
             state.isLoading = true;
             state.error = null;
         },
-        addCouponSuccess: (state, action) => {
+        addCouponuser: (state, action) => {
             state.coupon = action.payload;
             state.isLoading = false;
         },
-        addCouponFailure: (state, action) => {
+        addCouponlay: (state, action) => {
             state.isLoading = false;
             state.error = action.payload;
         },
-        removeCouponStart: (state) => {
+        removeCouponuser: (state) => {
             state.isLoading = true;
             state.error = null;
         },
-        removeCouponSuccess: (state, action) => {
+        removeCoupongo: (state, action) => {
             state.coupon = state.coupon.filter((item) => item.id !== action.payload);
             state.isLoading = false;
         },
-        removeCouponFailure: (state, action) => {
+        removeCouponfinal: (state, action) => {
             state.isLoading = false;
             state.error = action.payload;
         },
-        updateCouponStart: (state) => {
+        updateCoupongo: (state) => {
             state.isLoading = true;
         },
-        updateCouponSuccess: (state, action) => {
+        updateCouponlast: (state, action) => {
             state.coupon = state.coupon.map((item) => {
                 if (item.id === action.payload.id) {
                     return action.payload;
@@ -61,7 +61,7 @@ export const couponSlice = createSlice({
             });
             state.isLoading = false;
         },
-        updateCouponFailure: (state, action) => {
+        updateCouponjio: (state, action) => {
             state.isLoading = false;
             state.error = action.payload;
         }
@@ -69,45 +69,45 @@ export const couponSlice = createSlice({
 
 });
 
-export const { getCouponStart, getCouponSuccess, getCouponFailure, addCouponStart, addCouponSuccess, addCouponFailure, removeCouponStart, removeCouponSuccess, removeCouponFailure, updateCouponStart, updateCouponSuccess, updateCouponFailure } = couponSlice.actions;
+export const { getCouponfirst, getCouponright, getCoupongo, addCouponlast, addCouponuser, addCouponlay, removeCouponuser, removeCoupongo, removeCouponfinal, updateCoupongo, updateCouponlast, updateCouponjio } = couponSlice.actions;
 
 export const getCoupon = () => async (dispatch) => {
-    dispatch(getCouponStart());
+    dispatch(getCouponfirst());
     try {
         const response = await axios.get(TOKEN_KEY + "couponCode");
-        dispatch(getCouponSuccess(response.data));
+        dispatch(getCouponright(response.data));
     } catch (error) {
-        dispatch(getCouponFailure(error.message));
+        dispatch(getCoupongo(error.message));
     }
 };
 
 export const addCoupon = (couponData) => async (dispatch) => {
-    dispatch(addCouponStart());
+    dispatch(addCouponlast());
     try {
         const response = await axios.post(TOKEN_KEY + "couponCode", couponData);
-        dispatch(addCouponSuccess(response.data));
+        dispatch(addCouponuser(response.data));
     } catch (error) {
-        dispatch(addCouponFailure(error.message));
+        dispatch(addCouponlay(error.message));
     }
 };
 
 export const removeCoupon = (id) => async (dispatch) => {
-    dispatch(removeCouponStart());
+    dispatch(removeCouponuser());
     try {
         await axios.delete(`http://localhost:8000/couponCode/${id}`);
-        dispatch(removeCouponSuccess(id));
+        dispatch(removeCoupongo(id));
     } catch (error) {
-        dispatch(removeCouponFailure(error.message));
+        dispatch(removeCouponfinal(error.message));
     }
 }
 
 export const updateCoupon = (id, couponData) => async (dispatch) => {
-    dispatch(updateCouponStart());
+    dispatch(updateCoupongo());
     try {
         const response = await axios.put(`http://localhost:8000/couponCode/${id}`, couponData);
-        dispatch(updateCouponSuccess(response.data));
+        dispatch(updateCouponlast(response.data));
     } catch (error) {
-        dispatch(updateCouponFailure(error.message));
+        dispatch(updateCouponjio(error.message));
     }
 };
 

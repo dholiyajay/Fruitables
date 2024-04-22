@@ -7,31 +7,29 @@ import { getCoupon } from '../../../Redux/slice/couponSlice';
 
 function Cart(props) {
 
-    const [isValid, setIsValid] = useState(false);
-    const [couponApplied, setCouponApplied] = useState('');
+    const [vaildcoupon, setvaildcoupon] = useState(false);
+    const [Coupon, setCoupon] = useState('');
 
 
-    const couponFromAdmin = useSelector(state => state.couponInCart);
-    console.log(couponFromAdmin.coupon);
+    const couponuser = useSelector(state => state.couponInCart);
+    console.log(couponuser.coupon);
 
-    const handleApplyCoupon = () => {
-        const appliedCouponDetails = couponFromAdmin.coupon.find(v => v.couponename === couponApplied);
+    const handleApply = () => {
+        const appliyCoupon = couponuser.coupon.find(v => v.couponename === Coupon);
 
-        if (appliedCouponDetails) {
-            console.log('Applied');
-            setIsValid(true);
+        if (appliyCoupon) {
+            setvaildcoupon(true);
         } else {
-            console.log('Not Applied');
-            setIsValid(false);
+            setvaildcoupon(false);
         }
     };
 
-    const getDiscountedTotal = () => {
-        const appliedCouponDetails = couponFromAdmin.coupon.find(v => v.couponename === couponApplied);
+    const DiscountCoupon = () => {
+        const appliyCoupon = couponuser.coupon.find(v => v.couponename === Coupon);
 
-        if (appliedCouponDetails) {
-            const discountPercentage = appliedCouponDetails.percentage / 100;
-            return cratadd.reduce((a, b) => a + b.price * b.quantity, 0) * (1 - discountPercentage);
+        if (appliyCoupon) {
+            const discount = appliyCoupon.percentage / 100;
+            return cratadd.reduce((a, b) => a + b.price * b.quantity, 0) * (1 - discount);
         }
 
         return cratadd.reduce((a, b) => a + b.price * b.quantity, 0);
@@ -260,16 +258,16 @@ function Cart(props) {
                             type="text"
                             className="border-0 border-bottom rounded me-5 py-3 mb-4"
                             placeholder="Coupon Code"
-                            onChange={(e) => setCouponApplied(e.target.value)}
+                            onChange={(e) => setCoupon(e.target.value)}
                         />
-                        <button onClick={handleApplyCoupon} className="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
+                        <button onClick={handleApply} className="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
 
                         <span className="ms-5">
                             {
-                                isValid ? <p className="text-success">Coupon Applied: {couponApplied}</p> : null
+                                vaildcoupon ? <p className="text-success">Coupon Applied: {Coupon}</p> : null
                             }
                             {
-                                !isValid && <p className="text-danger">Coupon Not Applied</p>
+                                !vaildcoupon && <p className="text-danger">Coupon Not Applied</p>
                             }
                         </span>
 
@@ -313,9 +311,9 @@ function Cart(props) {
                                     <p className="mb-0 fw-bold text-primary ">
 
                                         {
-                                            isValid && couponApplied
-                                                ? `$ ${getDiscountedTotal().toFixed(2)} (${couponFromAdmin.coupon.find(v => v.couponename === couponApplied).percentage}% discount applied)`
-                                                : `$ ${cratadd.reduce((a, b) => a + b.price * b.count, 0).toFixed(2)}`
+                                            vaildcoupon && Coupon
+                                                ? `$ ${DiscountCoupon().toFixed(2)} (${couponuser.coupon.find(v => v.couponename === Coupon).percentage}% discount applied)`
+                                                : `$ ${cratadd.reduce((a, b) => a + b.totalPrice * b.count, 0).toFixed(2)}`
                                         }
 
 

@@ -77,8 +77,7 @@ const Coupon = () => {
             width: 130,
             renderCell: (params) => (
                 <Button
-                    variant="outlined"
-                    color="error"
+
                     onClick={() => handleRemove(params.row.id)}
                 >
                     Remove
@@ -92,8 +91,7 @@ const Coupon = () => {
             width: 100,
             renderCell: (params) => (
                 <Button
-                    variant="contained"
-                    color="success"
+
                     onClick={() => handleEdit(params.row)}
                 >
                     Edit
@@ -127,7 +125,7 @@ const Coupon = () => {
                 <form onSubmit={handleSubmit}>
                     <DialogContent>
                         <TextField
-                            margin="dense"
+
                             id="couponename"
                             name="couponename"
                             label="Enter Coupon Name"
@@ -141,7 +139,7 @@ const Coupon = () => {
                             helperText={errors.couponename && touched.couponename ? errors.couponename : ''}
                         />
                         <TextField
-                            margin="dense"
+
                             id="percentage"
                             name="percentage"
                             label="percentage"
