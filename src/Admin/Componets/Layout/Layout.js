@@ -24,6 +24,7 @@ import Vegitable from '../../Container/Vegitable/Vegitable';
 import { NavLink } from 'react-router-dom';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import PodcastsIcon from '@mui/icons-material/Podcasts';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 const drawerWidth = 240;
 
@@ -111,6 +112,7 @@ export default function Layout({children}) {
     {title : "Facilites" , link:"/admin/facilites" , icon: <PodcastsIcon sx={{ color: 'Darkgreen' }}/>},
     {title : "Organic Products" , link:"/admin/organicProduct" , icon: <PodcastsIcon sx={{ color: 'Darkgreen' }}/>},
     {title : "Coupon" , link:"/admin/coupon" , icon: <PodcastsIcon sx={{ color: 'Darkgreen' }}/>},
+    {title : "Coupon2" , link:"/admin/coupon2" , icon: <PersonAddIcon sx={{ color: 'Darkgreen' }}/>},
   ]
 
   return (

@@ -137,5 +137,28 @@
       "date": "2024-04-18",
       "createdOn": "2024-04-21"
     }
+  ],
+  "coupon2": [
+    {
+      "id": "69ff",
+      "couponename": "ma",
+      "percentage": 1,
+      "date": "2024-04-25",
+      "createdOn": "2024-04-22"
+    },
+    {
+      "id": "6314",
+      "couponename": "12nb",
+      "percentage": 12,
+      "date": "2024-04-25",
+      "createdOn": "2024-04-22"
+    },
+    {
+      "id": "1f10",
+      "couponename": "Jay",
+      "percentage": 10,
+      "date": "2024-04-26",
+      "createdOn": "2024-04-23"
+    }
   ]
 }

@@ -4,6 +4,7 @@ import { getDataToCart } from '../../../Redux/Action/addcart.action';
 import { increamentCount } from '../../../Redux/Count.slice';
 import { decremnet, increament, removecrat } from '../../../Redux/slice/crat.slice';
 import { getCoupon } from '../../../Redux/slice/couponSlice';
+import { getCoupon2 } from '../../../Redux/slice/coupon2.slice';
 
 function Cart(props) {
 
@@ -11,11 +12,12 @@ function Cart(props) {
     const [Coupon, setCoupon] = useState('');
 
 
-    const couponuser = useSelector(state => state.couponInCart);
-    console.log(couponuser.coupon);
+    const couponuser = useSelector(state => state.Copuon);
+    console.log(couponuser.Copuon);
 
     const handleApply = () => {
-        const appliyCoupon = couponuser.coupon.find(v => v.couponename === Coupon);
+        const appliyCoupon = couponuser.Copuon.find(v => v.couponename === Coupon);
+        console.log(appliyCoupon);
 
         if (appliyCoupon) {
             setvaildcoupon(true);
@@ -25,7 +27,8 @@ function Cart(props) {
     };
 
     const DiscountCoupon = () => {
-        const appliyCoupon = couponuser.coupon.find(v => v.couponename === Coupon);
+        const appliyCoupon = couponuser.Copuon.find(v => v.couponename === Coupon);
+        console.log(appliyCoupon);
 
         if (appliyCoupon) {
             const discount = appliyCoupon.percentage / 100;
@@ -54,7 +57,7 @@ function Cart(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getCoupon())
+        dispatch(getCoupon2())
     }, [dispatch])
 
     const hendalince = (id) => {
@@ -254,24 +257,25 @@ function Cart(props) {
                         </table>
                     </div>
                     <div className="mt-5">
-                        <input
-                            type="text"
-                            className="border-0 border-bottom rounded me-5 py-3 mb-4"
-                            placeholder="Coupon Code"
-                            onChange={(e) => setCoupon(e.target.value)}
-                        />
-                        <button onClick={handleApply} className="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
+                        <form>
 
-                        <span className="ms-5">
-                            {
-                                vaildcoupon ? <p className="text-success">Coupon Applied: {Coupon}</p> : null
-                            }
-                            {
-                                !vaildcoupon && <p className="text-danger">Coupon Not Applied</p>
-                            }
-                        </span>
+                            <input
+                                type="text"
+                                className="border-0 border-bottom rounded me-5 py-3 mb-4"
+                                placeholder="Coupon Code"
+                                onChange={(e) => setCoupon(e.target.value)}
+                            />
+                            <button onClick={handleApply} className="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
 
-
+                            <span className="ms-5">
+                                {
+                                    vaildcoupon ? <p className="text-success">Coupon Applied: {Coupon}</p> : null
+                                }
+                                {
+                                    !vaildcoupon && <p className="text-danger">Coupon Not Applied</p>
+                                }
+                            </span>
+                        </form>
                     </div>
 
                     <div className="row g-4 justify-content-end">
